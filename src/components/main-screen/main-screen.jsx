@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MovieCard from './../movie-card/movie-card.jsx';
 
 const MainScreen = (props) => {
-  const {movieTitles} = props;
+  const {movieTitles, onClickTitle} = props;
 
   return <div>
     <section className="movie-card">
@@ -101,7 +101,7 @@ const MainScreen = (props) => {
 
         <div className="catalog__movies-list">
 
-          {movieTitles.map((title, i) => <MovieCard key={i} title={title} />)}
+          {movieTitles.map((title, i) => <MovieCard key={i} title={title} onClickTitle={onClickTitle}/>)}
 
         </div>
 
@@ -128,7 +128,8 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  movieTitles: PropTypes.array.isRequired
+  movieTitles: PropTypes.array.isRequired,
+  onClickTitle: PropTypes.func.isRequired
 };
 
 export default MainScreen;

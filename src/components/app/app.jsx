@@ -4,16 +4,17 @@ import Sprite from './../sprite/sprite.jsx';
 import MainScreen from './../main-screen/main-screen.jsx';
 
 const App = (props) => {
-  const {movieTitles} = props;
+  const {movieTitles, onClickTitle} = props;
 
-  return <div>
+  return <React.Fragment>
     <Sprite/>
-    <MainScreen movieTitles={movieTitles}/>
-  </div>;
+    <MainScreen movieTitles={movieTitles} onClickTitle={onClickTitle}/>
+  </React.Fragment>;
 };
 
 App.propTypes = {
-  movieTitles: PropTypes.array.isRequired
+  movieTitles: PropTypes.array.isRequired,
+  onClickTitle: PropTypes.func.isRequired
 };
 
 export default App;
