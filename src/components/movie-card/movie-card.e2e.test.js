@@ -5,14 +5,14 @@ import MovieCard from './movie-card.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`Test click on the start button`, () => {
+it(`Test click on the title`, () => {
   const clickHandler = jest.fn();
   const movieCard = shallow(<MovieCard
     title={`Fantastic Beasts`}
     onClickTitle={clickHandler}
   />);
 
-  const startButton = movieCard.find(`.small-movie-card__link`);
-  startButton.simulate(`click`, {preventDefault() {}});
+  const title = movieCard.find(`.small-movie-card__link`);
+  title.simulate(`click`, {preventDefault() {}});
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });
