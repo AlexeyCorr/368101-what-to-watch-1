@@ -1,19 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import films from './mocks/films.js';
+
 import App from './components/app/app.jsx';
 
-const init = () => {
-  const data = {
-    titles: [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`],
-    onClickTitle() {
-      return 1;
-    }
-  };
-
+const init = (filmsData) => {
   ReactDOM.render(
-      <App movieTitles={data.titles} onClickTitle={data.onClickTitle}/>,
+      <App
+        films={filmsData}
+      />,
       document.querySelector(`#root`)
   );
 };
 
-init();
+init(films);
