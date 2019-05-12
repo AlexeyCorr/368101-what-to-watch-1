@@ -1,6 +1,7 @@
 import React from 'react';
-import App from './app.jsx';
 import renderer from 'react-test-renderer';
+
+import MovieList from './movie-list.jsx';
 
 const mock = {
   films: [
@@ -14,11 +15,13 @@ const mock = {
 
 it(`renders correctly`, () => {
   const {films} = mock;
-
+  const clickHandler = jest.fn();
   const tree = renderer
-    .create(<App
+    .create(<MovieList
       films={films}
+      onClick={clickHandler}
     />)
     .toJSON();
+
   expect(tree).toMatchSnapshot();
 });

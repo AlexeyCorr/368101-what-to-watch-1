@@ -1,13 +1,23 @@
 import React from 'react';
-import MovieCard from './movie-card.jsx';
 import renderer from 'react-test-renderer';
 
+import MovieCard from './movie-card.jsx';
+
+const mock =  {
+  film: {
+    picture: `img/bohemian-rhapsody.jpg`,
+    title: `Bohemian Rhapsody`,
+    link: `movie-page.html`
+  }
+};
+
 it(`renders correctly`, () => {
+  const {film} = mock;
   const clickHandler = jest.fn();
   const tree = renderer
     .create(<MovieCard
-      title={`Fantastic Beasts`}
-      onClickTitle={clickHandler}
+      film={film}
+      clickHandler={clickHandler}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
