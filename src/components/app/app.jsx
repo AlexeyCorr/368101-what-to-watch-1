@@ -18,7 +18,11 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  films: PropTypes.array.isRequired
+  films: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired
+  })).isRequired
 };
 
 export default App;
