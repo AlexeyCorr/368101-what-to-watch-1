@@ -9,6 +9,7 @@ exports[`renders correctly 1`] = `
   >
     <button
       className="small-movie-card__play-btn"
+      onClick={[Function]}
       type="button"
     >
       Play
@@ -17,7 +18,9 @@ exports[`renders correctly 1`] = `
       className="small-movie-card__image"
     >
       <img
+        alt="Bohemian Rhapsody"
         height="175"
+        src="img/bohemian-rhapsody.jpg"
         width="280"
       />
     </div>
@@ -26,7 +29,10 @@ exports[`renders correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-      />
+        href="movie-page.html"
+      >
+        Bohemian Rhapsody
+      </a>
     </h3>
   </article>
 </div>

@@ -7,12 +7,14 @@ import MainScreen from './../main-screen/main-screen.jsx';
 const App = (props) => {
   const {films} = props;
 
-  return <React.Fragment>
-    <Sprite/>
-    <MainScreen
-      films={films}
-    />
-  </React.Fragment>;
+  return (
+    <React.Fragment>
+      <Sprite/>
+      <MainScreen
+        films={films}
+      />
+    </React.Fragment>
+  );
 };
 
 App.propTypes = {

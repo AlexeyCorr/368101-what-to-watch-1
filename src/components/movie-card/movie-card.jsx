@@ -6,31 +6,40 @@ const MovieCard = (props) => {
     film,
     clickHandler,
   } = props;
-
   const {title, link, picture} = film;
 
-  return <article className="small-movie-card catalog__movies-card">
-    <button className="small-movie-card__play-btn" type="button">Play</button>
-    <div className="small-movie-card__image">
-      <img src={picture}
-        alt={title} width="280" height="175"/>
-    </div>
-    <h3 className="small-movie-card__title">
-      <a
-        className="small-movie-card__link"
-        onClick={clickHandler}
-        href={link}
+  return (
+    <article className="small-movie-card catalog__movies-card">
+      <button
+        className="small-movie-card__play-btn"
+        type="button"
+        onClick={() => clickHandler(film)}
       >
-        {title}
-      </a>
-    </h3>
-  </article>;
+        Play
+      </button>
+      <div className="small-movie-card__image">
+        <img src={picture}
+          alt={title} width="280" height="175"/>
+      </div>
+      <h3 className="small-movie-card__title">
+        <a
+          className="small-movie-card__link"
+
+          href={link}
+        >
+          {title}
+        </a>
+      </h3>
+    </article>
+  );
 };
 
 MovieCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
+  film: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+  }).isRequired,
   clickHandler: PropTypes.func.isRequired
 };
 

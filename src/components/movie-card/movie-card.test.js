@@ -4,16 +4,19 @@ import renderer from 'react-test-renderer';
 import MovieCard from './movie-card.jsx';
 
 const mock =  {
-  picture: `img/bohemian-rhapsody.jpg`,
-  title: `Bohemian Rhapsody`,
-  link: `movie-page.html`
+  film: {
+    picture: `img/bohemian-rhapsody.jpg`,
+    title: `Bohemian Rhapsody`,
+    link: `movie-page.html`
+  }
 };
 
 it(`renders correctly`, () => {
+  const {film} = mock;
   const clickHandler = jest.fn();
   const tree = renderer
     .create(<MovieCard
-      film={mock}
+      film={film}
       clickHandler={clickHandler}
     />)
     .toJSON();
