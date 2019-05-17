@@ -3,30 +3,30 @@
 exports[`renders correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onMouseEnter={[MockFunction]}
+  onMouseLeave={[MockFunction]}
 >
-  <button
-    className="small-movie-card__play-btn"
-    onClick={[Function]}
-    type="button"
+  <video
+    muted={true}
+    poster="img/bohemian-rhapsody.jpg"
+    width="100%"
   >
-    Play
-  </button>
-  <div
-    className="small-movie-card__image"
-  >
-    <img
-      alt="Bohemian Rhapsody"
-      height="175"
-      src="img/bohemian-rhapsody.jpg"
-      width="280"
+    <source
+      src="1.webm"
+      type="video/webm"
     />
-  </div>
+    <source
+      src="2.mp4"
+      type="video/mp4"
+    />
+  </video>
   <h3
     className="small-movie-card__title"
   >
     <a
       className="small-movie-card__link"
       href="movie-page.html"
+      onClick={[Function]}
     >
       Bohemian Rhapsody
     </a>
