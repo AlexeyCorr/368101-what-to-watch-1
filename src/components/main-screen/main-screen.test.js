@@ -7,7 +7,8 @@ const mock = {
     {
       picture: `img/bohemian-rhapsody.jpg`,
       title: `Bohemian Rhapsody`,
-      link: `movie-page.html`
+      link: `movie-page.html`,
+      src: [`1.webm`, `2.mp4`]
     }
   ]
 };

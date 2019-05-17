@@ -10,6 +10,7 @@ class MovieList extends PureComponent {
     this.state = {
       activePlayer: -1
     };
+    this._timeout = null;
   }
 
   render() {
@@ -21,18 +22,34 @@ class MovieList extends PureComponent {
           <MovieCard
             key={`movie-card-${i}`}
             film={film}
-            mouseEnterHandler={() => this.setState({
-              activePlayer: this.state.activePlayer === i ? -1 : i
-            })}
-            mouseLeaveHandler={() => this.setState({
-              activePlayer: -1
-            })}
+            mouseEnterHandler={() => this._mouseEnter(i)}
+            mouseLeaveHandler={() => this._mouseLeave()}
             isPlaying={i === this.state.activePlayer}
             clickHandler={onClick}
           />
         )}
       </div>
     );
+  }
+
+  componentWillUnmount() {
+    this._timeout = null;
+  }
+
+  _mouseEnter(index) {
+    const timeoutID = window.setTimeout(() => {
+      this.setState({
+        activePlayer: this.state.activePlayer === index ? -1 : index
+      });
+    }, 1000);
+    this._timeout = timeoutID;
+  }
+
+  _mouseLeave() {
+    this.setState({activePlayer: -1});
+    if (this._timeout) {
+      window.clearTimeout(this._timeout);
+    }
   }
 }
 
