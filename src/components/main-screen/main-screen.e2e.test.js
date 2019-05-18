@@ -11,7 +11,8 @@ const mock = {
     {
       picture: `img/bohemian-rhapsody.jpg`,
       title: `Bohemian Rhapsody`,
-      link: `movie-page.html`
+      link: `movie-page.html`,
+      src: [`1.webm`, `2.mp4`]
     }
   ]
 };
@@ -22,7 +23,7 @@ it(`On click on MovieCard`, () => {
     films={films}
   />);
 
-  const button = mainScreen.find(`.small-movie-card__play-btn`);
+  const button = mainScreen.find(`.small-movie-card__link`);
   button.simulate(`click`);
 
   expect(mainScreen.state(`selectFilm`)).toEqual(films[0]);

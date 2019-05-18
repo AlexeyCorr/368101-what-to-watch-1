@@ -12,16 +12,11 @@ class MainScreen extends PureComponent {
         title: ``,
         link: ``,
         picture: ``,
+        src: []
       }
     };
 
     this._clickHandler = this._clickHandler.bind(this);
-  }
-
-  _clickHandler(film) {
-    this.setState({
-      selectFilm: film
-    });
   }
 
   render() {
@@ -148,6 +143,12 @@ class MainScreen extends PureComponent {
         </div>
       </React.Fragment>
     );
+  }
+
+  _clickHandler(film) {
+    this.setState({
+      selectFilm: film
+    });
   }
 }
 
