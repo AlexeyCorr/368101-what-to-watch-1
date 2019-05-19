@@ -6,6 +6,7 @@ import MovieList from './movie-list.jsx';
 const mock = {
   films: [
     {
+      genre: `Romance`,
       picture: `img/bohemian-rhapsody.jpg`,
       title: `Bohemian Rhapsody`,
       link: `movie-page.html`,

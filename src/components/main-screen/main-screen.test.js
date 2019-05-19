@@ -5,6 +5,7 @@ import renderer from 'react-test-renderer';
 const mock = {
   films: [
     {
+      genre: `Romance`,
       picture: `img/bohemian-rhapsody.jpg`,
       title: `Bohemian Rhapsody`,
       link: `movie-page.html`,
