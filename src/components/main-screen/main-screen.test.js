@@ -1,25 +1,21 @@
 import React from 'react';
 import MainScreen from './main-screen.jsx';
 import renderer from 'react-test-renderer';
+import GenreList from './../genre-list/genre-list.jsx';
+import MovieList from './../movie-list/movie-list.jsx';
 
 const mock = {
-  films: [
-    {
-      genre: `Romance`,
-      picture: `img/bohemian-rhapsody.jpg`,
-      title: `Bohemian Rhapsody`,
-      link: `movie-page.html`,
-      src: [`1.webm`, `2.mp4`]
-    }
-  ]
+  // GenreListComponent: <GenreList/>,
+  // MovieListComponent: <MovieList/>,
 };
 
 it(`renders correctly`, () => {
-  const {films} = mock;
+  const {GenreListComponent, MovieListComponent} = mock;
 
   const tree = renderer
     .create(<MainScreen
-      films={films}
+      GenreListComponent={GenreListComponent}
+      MovieListComponent={MovieListComponent}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

@@ -1,26 +1,26 @@
+import {createStore} from "redux";
+import {Provider} from "react-redux";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import films from './mocks/films.js';
 
+import {reducer} from './reducer/reducer.js';
+import films from './mocks/films.js';
 import App from './components/app/app.jsx';
 
-const sort = (films) => {
-  const newData = [...films];
-  return newData.filter((film) => {
-    return film.genre === `Crime`;
-  });
-};
-
-
-console.log(sort(films))
-console.log(films)
-
 const init = (filmsData) => {
+
+  const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+
   ReactDOM.render(
+    <Provider store={store}>
       <App
         films={filmsData}
-      />,
-      document.querySelector(`#root`)
+      />
+    </Provider>,
+    document.querySelector(`#root`)
   );
 };
 

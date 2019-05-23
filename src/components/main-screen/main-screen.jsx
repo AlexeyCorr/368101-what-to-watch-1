@@ -1,150 +1,100 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import genres from './../../mocks/genres.js';
-import GenreList from './../genre-list/genre-list.jsx';
-import MovieList from './../movie-list/movie-list.jsx';
+const MainScreen = ({GenreListComponent, MovieListComponent}) => {
 
+  return (
+    <React.Fragment>
+      <section className="movie-card">
+        <div className="movie-card__bg">
+          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        </div>
 
-class MainScreen extends PureComponent {
-  constructor(props) {
-    super(props);
+        <h1 className="visually-hidden">WTW</h1>
 
-    this.state = {
-      selectGenre: ``,
-      selectFilm: {
-        genre: ``,
-        title: ``,
-        link: ``,
-        picture: ``,
-        src: []
-      }
-    };
-
-    this._clickHandler = this._clickHandler.bind(this);
-    this._clickFilterHandler = this._clickFilterHandler.bind(this);
-  }
-
-  render() {
-    const {films} = this.props;
-
-    return (
-      <React.Fragment>
-        <section className="movie-card">
-          <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        <header className="page-header movie-card__head">
+          <div className="logo">
+            <a className="logo__link">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </a>
           </div>
 
-          <h1 className="visually-hidden">WTW</h1>
+          <div className="user-block">
+            <div className="user-block__avatar">
+              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            </div>
+          </div>
+        </header>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <a className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
+        <div className="movie-card__wrap">
+          <div className="movie-card__info">
+            <div className="movie-card__poster">
+              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+                height="327" />
             </div>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            <div className="movie-card__desc">
+              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <p className="movie-card__meta">
+                <span className="movie-card__genre">Drama</span>
+                <span className="movie-card__year">2014</span>
+              </p>
+
+              <div className="movie-card__buttons">
+                <button className="btn btn--play movie-card__button" type="button">
+                  <svg viewBox="0 0 19 19" width="19" height="19">
+                    <use xlinkHref="#play-s"></use>
+                  </svg>
+                  <span>Play</span>
+                </button>
+                <button className="btn btn--list movie-card__button" type="button">
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"></use>
+                  </svg>
+                  <span>My list</span>
+                </button>
               </div>
             </div>
-          </header>
+          </div>
+        </div>
+      </section>
 
-          <div className="movie-card__wrap">
-            <div className="movie-card__info">
-              <div className="movie-card__poster">
-                <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
-                  height="327" />
-              </div>
+      <div className="page-content">
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-              <div className="movie-card__desc">
-                <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
-                <p className="movie-card__meta">
-                  <span className="movie-card__genre">Drama</span>
-                  <span className="movie-card__year">2014</span>
-                </p>
+          {GenreListComponent}
 
-                <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button">
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s"></use>
-                    </svg>
-                    <span>Play</span>
-                  </button>
-                  <button className="btn btn--list movie-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                    <span>My list</span>
-                  </button>
-                </div>
-              </div>
-            </div>
+          {MovieListComponent}
+
+          <div className="catalog__more">
+            <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
 
-        <div className="page-content">
-          <section className="catalog">
-            <h2 className="catalog__title visually-hidden">Catalog</h2>
+        <footer className="page-footer">
+          <div className="logo">
+            <a className="logo__link logo__link--light">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </a>
+          </div>
 
-            <GenreList
-              genres={genres}
-              clickHandler={this._clickFilterHandler}
-            />
-
-            <MovieList
-              films={films}
-              onClick={this._clickHandler}
-            />
-
-            <div className="catalog__more">
-              <button className="catalog__button" type="button">Show more</button>
-            </div>
-          </section>
-
-          <footer className="page-footer">
-            <div className="logo">
-              <a className="logo__link logo__link--light">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
-
-            <div className="copyright">
-              <p>© 2019 What to watch Ltd.</p>
-            </div>
-          </footer>
-        </div>
-      </React.Fragment>
-    );
-  }
-
-  _clickFilterHandler(evt) {
-    evt.preventDefault();
-    const target = evt.target;
-    const item = target.closest(`.catalog__genres-item`);
-
-    if (item) {
-      item.classList.add(`catalog__genres-item--active`);
-      this.setState({
-        selectGenre: target.textContent
-      });
-    }
-  }
-
-  _clickHandler(film) {
-    this.setState({
-      selectFilm: film
-    });
-  }
-}
+          <div className="copyright">
+            <p>© 2019 What to watch Ltd.</p>
+          </div>
+        </footer>
+      </div>
+    </React.Fragment>
+  );
+};
 
 MainScreen.propTypes = {
-  films: PropTypes.array.isRequired
+  MovieListComponent: PropTypes.object.isRequired,
+  GenreListComponent: PropTypes.object.isRequired,
 };
 
 export default MainScreen;
