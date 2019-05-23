@@ -11,22 +11,21 @@ const ActionType = {
 };
 
 const getFilteredArray = (array, filter) => {
-  console.log(array, filter)
-  return [...array].filter((it) => it.genre === filter);
+  return array.filter((it) => it.genre === filter);
 };
 
 const ActionCreators = {
-  filterItems: (films, selectFilter) => {
+  filterItems: (selectFilter) => {
     if (selectFilter === `All genres`) {
       return {
         type: ActionType.FILTER_ITEMS,
-        payload: films,
+        payload: [...initialState.films],
       };
     }
 
     return {
       type: ActionType.FILTER_ITEMS,
-      payload: getFilteredArray(films, selectFilter),
+      payload: getFilteredArray([...initialState.films], selectFilter),
     };
   },
 
@@ -56,5 +55,8 @@ const reducer = (state = initialState, action) => {
 
 export {
   ActionCreators,
-  reducer
+  ActionType,
+  reducer,
+  getFilteredArray,
+  initialState
 };

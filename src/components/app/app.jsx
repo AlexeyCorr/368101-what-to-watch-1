@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
 import {ActionCreators} from './../../reducer/reducer.js';
-import genres from './../../mocks/genres.js';
 import Sprite from './../sprite/sprite.jsx';
-import GenreList from './../genre-list/genre-list.jsx';
-import MovieList from './../movie-list/movie-list.jsx';
 import MainScreen from './../main-screen/main-screen.jsx';
 
 class App extends PureComponent {
@@ -27,17 +24,10 @@ class App extends PureComponent {
       <React.Fragment>
         <Sprite/>
         <MainScreen
-          GenreListComponent={
-            <GenreList
-              genres={genres}
-              clickHandler={(genre) => clickFilterHandler(films, genre)}
-              activeGenre={genre}
-            />}
-          MovieListComponent={
-            <MovieList
-              films={films}
-              onClick={this._clickHandler}
-            />}
+          films={films}
+          genre={genre}
+          clickFilterHandler={clickFilterHandler}
+          clickMovieHandler={this._clickHandler}
         />
       </React.Fragment>
     );
@@ -47,11 +37,6 @@ class App extends PureComponent {
     this.setState({
       selectFilm: film,
     });
-  }
-
-  componentDidUpdate() {
-    console.log(this.props.genre);
-    console.log(this.props.films);
   }
 }
 
@@ -73,8 +58,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispachToProps = (dispatch) => ({
-  clickFilterHandler: (films, genre) => {
-    dispatch(ActionCreators.filterItems(films, genre));
+  clickFilterHandler: (genre) => {
+    dispatch(ActionCreators.filterItems(genre));
     dispatch(ActionCreators.getGenre(genre));
   },
 });

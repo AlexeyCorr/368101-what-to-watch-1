@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MainScreen = ({GenreListComponent, MovieListComponent}) => {
+import genres from './../../mocks/genres.js';
+import GenreList from './../genre-list/genre-list.jsx';
+import MovieList from './../movie-list/movie-list.jsx';
+
+const MainScreen = ({clickFilterHandler, clickMovieHandler, films, genre}) => {
 
   return (
     <React.Fragment>
@@ -65,9 +69,16 @@ const MainScreen = ({GenreListComponent, MovieListComponent}) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          {GenreListComponent}
+          <GenreList
+            genres={genres}
+            activeGenre={genre}
+            clickHandler={clickFilterHandler}
+          />
 
-          {MovieListComponent}
+          <MovieList
+            films={films}
+            onClick={clickMovieHandler}
+          />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -93,8 +104,15 @@ const MainScreen = ({GenreListComponent, MovieListComponent}) => {
 };
 
 MainScreen.propTypes = {
-  MovieListComponent: PropTypes.object.isRequired,
-  GenreListComponent: PropTypes.object.isRequired,
+  clickFilterHandler: PropTypes.func.isRequired,
+  clickMovieHandler: PropTypes.func.isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    genre: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired
+  })).isRequired,
+  genre: PropTypes.string.isRequired,
 };
 
 export default MainScreen;
