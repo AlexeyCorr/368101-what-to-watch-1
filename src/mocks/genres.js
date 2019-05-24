@@ -1,4 +1,4 @@
-export default [
+const genres = new Set([
   `All genres`,
   `Comedies`,
   `Crime`,
@@ -9,4 +9,6 @@ export default [
   `Romance`,
   `Sci-Fi`,
   `Thrillers`
-];
+]);
+
+export default genres;
