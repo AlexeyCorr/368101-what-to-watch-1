@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import genres from './../../mocks/genres.js';
 import GenreList from './../genre-list/genre-list.jsx';
 import MovieList from './../movie-list/movie-list.jsx';
+import withActiveMovie from './../../hocs/with-active-video/with-active-video.jsx';
+
+const WithActiveMovieWrapper = withActiveMovie(MovieList);
 
 const MainScreen = ({clickFilterHandler, clickMovieHandler, films, genre}) => {
 
@@ -75,10 +78,13 @@ const MainScreen = ({clickFilterHandler, clickMovieHandler, films, genre}) => {
             clickHandler={clickFilterHandler}
           />
 
-          <MovieList
+          <WithActiveMovieWrapper
             films={films}
             onClick={clickMovieHandler}
           />
+          {/* <MovieList
+
+          /> */}
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
