@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import genres from './../../mocks/genres.js';
 import GenreList from './../genre-list/genre-list.jsx';
 import MovieList from './../movie-list/movie-list.jsx';
-import withActiveMovie from './../../hocs/with-active-video/with-active-video.jsx';
+import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
 
-const WithActiveMovieWrapper = withActiveMovie(MovieList);
+const WithActiveGenre = withActiveItem(GenreList);
+const WithActiveMovie = withActiveItem(MovieList);
 
-const MainScreen = ({clickFilterHandler, clickMovieHandler, films, genre}) => {
+const MainScreen = ({clickFilterHandler, films}) => {
 
   return (
     <React.Fragment>
@@ -72,19 +73,14 @@ const MainScreen = ({clickFilterHandler, clickMovieHandler, films, genre}) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList
+          <WithActiveGenre
             genres={genres}
-            activeGenre={genre}
-            clickHandler={clickFilterHandler}
+            clickFilterHandler={clickFilterHandler}
           />
 
-          <WithActiveMovieWrapper
+          <WithActiveMovie
             films={films}
-            onClick={clickMovieHandler}
           />
-          {/* <MovieList
-
-          /> */}
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -111,14 +107,12 @@ const MainScreen = ({clickFilterHandler, clickMovieHandler, films, genre}) => {
 
 MainScreen.propTypes = {
   clickFilterHandler: PropTypes.func.isRequired,
-  clickMovieHandler: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     genre: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     link: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired
   })).isRequired,
-  genre: PropTypes.string.isRequired,
 };
 
 export default MainScreen;

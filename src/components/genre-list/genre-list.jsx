@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const GenreList = ({genres, clickHandler, activeGenre}) => {
+const GenreList = ({genres, clickHandler, activeItem}) => {
   const genreList = [...genres].map((genre, i) =>
     <li
-      className={`catalog__genres-item ${activeGenre === genre ? `catalog__genres-item--active` : ``}`}
+      className={`catalog__genres-item ${activeItem === genre ? `catalog__genres-item--active` : ``}`}
       key={`genre-${i}`}
     >
       <a
@@ -27,10 +27,14 @@ const GenreList = ({genres, clickHandler, activeGenre}) => {
   );
 };
 
+
 GenreList.propTypes = {
   genres: PropTypes.object.isRequired,
-  clickHandler: PropTypes.func.isRequired,
-  activeGenre: PropTypes.string.isRequired,
+  activeItem: PropTypes.string,
+  clickHandler: PropTypes.func,
+};
+GenreList.defaultProps = {
+  activeItem: `All genres`,
 };
 
 export default GenreList;

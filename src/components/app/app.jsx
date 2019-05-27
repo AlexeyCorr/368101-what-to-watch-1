@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
@@ -6,40 +6,20 @@ import {ActionCreators} from './../../reducer/reducer.js';
 import Sprite from './../sprite/sprite.jsx';
 import MainScreen from './../main-screen/main-screen.jsx';
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
+const App = (props) => {
+  const {films, genre, clickFilterHandler} = props;
 
-    this.state = {
-      selectFilm: {},
-    };
-
-    this._clickHandler = this._clickHandler.bind(this);
-  }
-
-  render() {
-    const {films, genre, clickFilterHandler} = this.props;
-
-    return (
-      <React.Fragment>
-        <Sprite/>
-        <MainScreen
-          films={films}
-          genre={genre}
-          clickFilterHandler={clickFilterHandler}
-          clickMovieHandler={this._clickHandler}
-        />
-      </React.Fragment>
-    );
-  }
-
-  _clickHandler(film) {
-    this.setState({
-      selectFilm: film,
-    });
-  }
-}
-
+  return (
+    <React.Fragment>
+      <Sprite/>
+      <MainScreen
+        films={films}
+        genre={genre}
+        clickFilterHandler={clickFilterHandler}
+      />
+    </React.Fragment>
+  );
+};
 
 App.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({

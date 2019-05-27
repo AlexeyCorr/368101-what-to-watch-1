@@ -30,7 +30,7 @@ const MovieCard = (props) => {
           href={link}
           onClick={(evt) => {
             evt.preventDefault();
-            clickHandler(film);
+            clickHandler(film.title);
           }}
         >
           {title}
@@ -50,7 +50,7 @@ MovieCard.propTypes = {
   mouseEnterHandler: PropTypes.func.isRequired,
   mouseLeaveHandler: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
-  clickHandler: PropTypes.func.isRequired,
+  clickHandler: PropTypes.func,
 };
 
 export default MovieCard;
