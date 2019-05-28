@@ -11,10 +11,12 @@ class MovieList extends PureComponent {
       activePlayer: -1
     };
     this._timeout = null;
+    this._mouseEnter = this._mouseEnter.bind(this);
+    this._mouseLeave = this._mouseLeave.bind(this);
   }
 
   render() {
-    const {films, onClick} = this.props;
+    const {films, clickHandler} = this.props;
 
     return (
       <div className="catalog__movies-list">
@@ -25,7 +27,7 @@ class MovieList extends PureComponent {
             mouseEnterHandler={() => this._mouseEnter(i)}
             mouseLeaveHandler={() => this._mouseLeave()}
             isPlaying={i === this.state.activePlayer}
-            clickHandler={onClick}
+            clickHandler={clickHandler}
           />
         )}
       </div>
@@ -55,7 +57,7 @@ class MovieList extends PureComponent {
 
 MovieList.propTypes = {
   films: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired,
+  clickHandler: PropTypes.func,
 };
 
 export default MovieList;
