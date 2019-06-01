@@ -7,6 +7,9 @@ import {reducer} from './reducer/reducer.js';
 import films from './mocks/films.js';
 import App from './components/app/app.jsx';
 
+const dataFilms = fetch(`https://es31-server.appspot.com/wtw/films`);
+console.log(dataFilms);
+
 const init = (filmsData) => {
 
   const store = createStore(
@@ -24,4 +27,4 @@ const init = (filmsData) => {
   );
 };
 
-init(films);
+init(dataFilms);

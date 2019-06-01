@@ -1,8 +1,10 @@
 import films from './../mocks/films.js';
 
+const dataFilms = fetch(`https://es31-server.appspot.com/wtw/films`).then((response) => response.json());
+
 const initialState = {
   genre: `All genres`,
-  films,
+  films: dataFilms,
 };
 
 const ActionType = {
