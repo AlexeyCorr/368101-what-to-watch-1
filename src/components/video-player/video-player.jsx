@@ -14,10 +14,6 @@ class VideoPlayer extends PureComponent {
 
   render() {
     const {picture, src} = this.props;
-    const source = src.map((it, i) => {
-      let format = this._getFormatVideo(it);
-      return <source src={it} type={`video/${format}`} key={`format-${i}`}/>;
-    });
 
     return (
       <video
@@ -26,7 +22,7 @@ class VideoPlayer extends PureComponent {
         ref={this._videoRef}
         muted
       >
-        {source}
+        <source src={src} type={`video/${this._getFormatVideo(src)}`}/>
       </video>
     );
   }
@@ -92,7 +88,7 @@ class VideoPlayer extends PureComponent {
 
 VideoPlayer.propTypes = {
   picture: PropTypes.string.isRequired,
-  src: PropTypes.array.isRequired,
+  src: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
 };
 

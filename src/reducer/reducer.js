@@ -1,15 +1,20 @@
-import films from './../mocks/films.js';
-
-const dataFilms = fetch(`https://es31-server.appspot.com/wtw/films`).then((response) => response.json());
-
 const initialState = {
   genre: `All genres`,
-  films: dataFilms,
+  films: [],
 };
 
 const ActionType = {
   FILTER_ITEMS: `FILTER_ITEMS`,
   GET_GENRE: `GET_GENRE`,
+  LOAD_FILMS: `LOAD_FILMS`,
+};
+
+const loadFilms = () => (dispatch) => {
+  return fetch(`https://es31-server.appspot.com/wtw/films`)
+    .then((response) => response.json())
+    .then((films) => {
+      dispatch(ActionCreators.loadFilms(films));
+    });
 };
 
 const getFilteredArray = (array, filter) => {
@@ -36,7 +41,14 @@ const ActionCreators = {
       type: ActionType.GET_GENRE,
       payload: genre,
     };
-  }
+  },
+
+  loadFilms: (films) => {
+    return {
+      type: ActionType.LOAD_FILMS,
+      payload: films,
+    }
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -50,6 +62,11 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         genre: action.payload,
       });
+
+    case ActionType.LOAD_FILMS:
+      return Object.assign({}, state, {
+        films: action.payload,
+      });
   }
 
   return state;
@@ -60,5 +77,6 @@ export {
   ActionType,
   reducer,
   getFilteredArray,
-  initialState
+  initialState,
+  loadFilms,
 };

@@ -74,7 +74,8 @@ const MainScreen = ({clickFilterHandler, films}) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <WithActiveGenre
-            genres={genres}
+            films={films}
+            // genres={[...new Set(films.map((film) => film.genre))]}
             clickFilterHandler={clickFilterHandler}
           />
 
@@ -107,12 +108,7 @@ const MainScreen = ({clickFilterHandler, films}) => {
 
 MainScreen.propTypes = {
   clickFilterHandler: PropTypes.func.isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    genre: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired
-  })).isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export default MainScreen;

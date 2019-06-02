@@ -5,9 +5,12 @@ import {connect} from "react-redux";
 import {ActionCreators} from './../../reducer/reducer.js';
 import Sprite from './../sprite/sprite.jsx';
 import MainScreen from './../main-screen/main-screen.jsx';
+import {Server2ResultMapper} from './../../util.js';
 
 const App = (props) => {
   const {films, genre, clickFilterHandler} = props;
+
+  console.log(films);
 
   return (
     <React.Fragment>
@@ -22,19 +25,14 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape({
-    genre: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired
-  })).isRequired,
+  films: PropTypes.array.isRequired,
   genre: PropTypes.string.isRequired,
   clickFilterHandler: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   genre: state.genre,
-  films: state.films,
+  films: state.films.map((data) => Server2ResultMapper(data)),
 });
 
 const mapDispachToProps = (dispatch) => ({
