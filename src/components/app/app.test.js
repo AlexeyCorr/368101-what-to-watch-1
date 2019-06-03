@@ -14,16 +14,20 @@ const mock = {
     }
   ],
   genre: `All genres`,
+  genres: [
+    `Romance`
+  ],
 };
 
 it(`renders correctly`, () => {
-  const {films, genre} = mock;
+  const {films, genre, genres} = mock;
   const clickFilterHandler = jest.fn();
 
   const tree = renderer
     .create(<App
       films={films}
       genre={genre}
+      genres={genres}
       clickFilterHandler={clickFilterHandler}
     />)
     .toJSON();
