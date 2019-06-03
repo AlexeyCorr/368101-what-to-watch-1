@@ -7,10 +7,10 @@ const mock = {
   films: [
     {
       genre: `Romance`,
-      picture: `img/bohemian-rhapsody.jpg`,
+      previewImage: `img/bohemian-rhapsody.jpg`,
       title: `Bohemian Rhapsody`,
-      link: `movie-page.html`,
-      src: [`1.webm`, `2.mp4`]
+      videoLink: `movie-page.html`,
+      previewLink: `1.webm`,
     }
   ],
   genre: `All genres`,

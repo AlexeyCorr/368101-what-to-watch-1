@@ -11,7 +11,8 @@ const MovieCard = (props) => {
     clickHandler,
     isPlaying,
   } = props;
-  const {title, link, picture, src} = film;
+
+  const {title, videoLink, previewImage, previewLink} = film;
 
   return (
     <article
@@ -21,13 +22,13 @@ const MovieCard = (props) => {
     >
       <VideoPlayer
         isPlaying={isPlaying}
-        picture={picture}
-        src={src}
+        picture={previewImage}
+        src={previewLink}
       />
       <h3 className="small-movie-card__title">
         <a
           className="small-movie-card__link"
-          href={link}
+          href={videoLink}
           onClick={(evt) => {
             evt.preventDefault();
             clickHandler(film.title);
@@ -41,12 +42,7 @@ const MovieCard = (props) => {
 };
 
 MovieCard.propTypes = {
-  film: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
-    src: PropTypes.array.isRequired,
-  }).isRequired,
+  film: PropTypes.object.isRequired,
   mouseEnterHandler: PropTypes.func.isRequired,
   mouseLeaveHandler: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
