@@ -8,7 +8,7 @@ import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
 const WithActiveGenre = withActiveItem(GenreList);
 const WithActiveMovie = withActiveItem(MovieList);
 
-const MainScreen = ({clickFilterHandler, films}) => {
+const MainScreen = ({clickFilterHandler, films, genres}) => {
 
   return (
     <React.Fragment>
@@ -73,7 +73,7 @@ const MainScreen = ({clickFilterHandler, films}) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <WithActiveGenre
-            films={films}
+            genres={genres}
             clickFilterHandler={clickFilterHandler}
           />
 
@@ -107,6 +107,7 @@ const MainScreen = ({clickFilterHandler, films}) => {
 MainScreen.propTypes = {
   clickFilterHandler: PropTypes.func.isRequired,
   films: PropTypes.array.isRequired,
+  genres: PropTypes.array.isRequired,
 };
 
 export default MainScreen;

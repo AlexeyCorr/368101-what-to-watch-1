@@ -1,3 +1,5 @@
+import {server2ResultMapper} from './../../util.js';
+
 const initialState = {
   genre: `All genres`,
   films: [],
@@ -42,7 +44,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.LOAD_FILMS:
       return Object.assign({}, state, {
-        films: action.payload,
+        films: action.payload.map((data) => server2ResultMapper(data)),
       });
   }
 

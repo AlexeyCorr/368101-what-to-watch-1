@@ -12,18 +12,20 @@ const mock = {
       previewLink: `1.webm`,
     }
   ],
-  genre: `All genres`,
+  genres: [
+    `Romance`
+  ],
 };
 
 it(`renders correctly`, () => {
-  const {films, genre} = mock;
+  const {films, genres} = mock;
   const clickFilterHandler = jest.fn();
   const clickMovieHandler = jest.fn();
 
   const tree = renderer
     .create(<MainScreen
       films={films}
-      genre={genre}
+      genres={genres}
       clickFilterHandler={clickFilterHandler}
       clickMovieHandler={clickMovieHandler}
     />)

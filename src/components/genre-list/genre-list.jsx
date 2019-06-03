@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const GEFAULT_GENRE = `All genres`;
 
-const GenreList = ({films, clickHandler, activeItem}) => {
-  const genreList = [GEFAULT_GENRE, ...new Set(films.map((film) => film.genre))]
+const GenreList = ({genres, clickHandler, activeItem}) => {
+  const genreList = [GEFAULT_GENRE, ...new Set(genres)]
     .map((genre, i) =>
       <li
         className={`catalog__genres-item ${activeItem === genre ? `catalog__genres-item--active` : ``}`}
@@ -15,7 +15,7 @@ const GenreList = ({films, clickHandler, activeItem}) => {
           className="catalog__genres-link"
           onClick={(evt) => {
             evt.preventDefault();
-            clickHandler(genre, films);
+            clickHandler(genre);
           }}
         >
           {genre}
@@ -31,7 +31,7 @@ const GenreList = ({films, clickHandler, activeItem}) => {
 };
 
 GenreList.propTypes = {
-  films: PropTypes.array.isRequired,
+  genres: PropTypes.array.isRequired,
   activeItem: PropTypes.string,
   clickHandler: PropTypes.func,
 };
