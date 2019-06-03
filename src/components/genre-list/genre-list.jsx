@@ -6,22 +6,22 @@ const GEFAULT_GENRE = `All genres`;
 const GenreList = ({films, clickHandler, activeItem}) => {
   const genreList = [GEFAULT_GENRE, ...new Set(films.map((film) => film.genre))]
     .map((genre, i) =>
-    <li
-      className={`catalog__genres-item ${activeItem === genre ? `catalog__genres-item--active` : ``}`}
-      key={`genre-${i}`}
-    >
-      <a
-        href="#"
-        className="catalog__genres-link"
-        onClick={(evt) => {
-          evt.preventDefault();
-          clickHandler(genre, films);
-        }}
+      <li
+        className={`catalog__genres-item ${activeItem === genre ? `catalog__genres-item--active` : ``}`}
+        key={`genre-${i}`}
       >
-        {genre}
-      </a>
-    </li>
-  );
+        <a
+          href="#"
+          className="catalog__genres-link"
+          onClick={(evt) => {
+            evt.preventDefault();
+            clickHandler(genre, films);
+          }}
+        >
+          {genre}
+        </a>
+      </li>
+    );
 
   return (
     <ul className="catalog__genres-list">
@@ -32,7 +32,6 @@ const GenreList = ({films, clickHandler, activeItem}) => {
 
 GenreList.propTypes = {
   films: PropTypes.array.isRequired,
-  // genres: PropTypes.array.isRequired,
   activeItem: PropTypes.string,
   clickHandler: PropTypes.func,
 };

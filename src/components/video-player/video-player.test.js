@@ -4,18 +4,18 @@ import renderer from 'react-test-renderer';
 import VideoPlayer from './video-player.jsx';
 
 const mock =  {
-  picture: `img/bohemian-rhapsody.jpg`,
-  src: [`1.webm`, `2.mp4`],
+  previewImage: `img/bohemian-rhapsody.jpg`,
+  previewLink: `2.mp4`,
   isPlaying: false
 };
 
 it(`renders correctly`, () => {
-  const {picture, src, isPlaying} = mock;
+  const {previewImage, previewLink, isPlaying} = mock;
   const tree = renderer
     .create(<VideoPlayer
       isPlaying={isPlaying}
-      picture={picture}
-      src={src}
+      picture={previewImage}
+      src={previewLink}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

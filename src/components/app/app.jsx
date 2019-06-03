@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
-import {ActionCreators} from './../../reducer/reducer.js';
+// import {ActionCreator} from './../../reducer/index.js';
 import Sprite from './../sprite/sprite.jsx';
 import MainScreen from './../main-screen/main-screen.jsx';
-import {Server2ResultMapper} from './../../util.js';
+import {server2ResultMapper} from './../../util.js';
+// import {getAuthorizationStatus} from './../../reducer/user/selectors.js';
+import {getFilms, getGenre} from './../../reducer/data/selectors.js';
+// import SingInScreen from './../sing-in-screen/sing-in-screen.jsx';
+import {getFilteredArray} from './../../reducer/data/selectors.js';
 
 const App = (props) => {
   const {films, genre, clickFilterHandler} = props;
-
-  console.log(films);
-
   return (
     <React.Fragment>
       <Sprite/>
+      {/* <SingInScreen/> */}
       <MainScreen
         films={films}
         genre={genre}
@@ -31,14 +33,14 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  genre: state.genre,
-  films: state.films.map((data) => Server2ResultMapper(data)),
+  genre: getGenre(state),
+  films: getFilms(state).map((data) => server2ResultMapper(data)),
 });
 
 const mapDispachToProps = (dispatch) => ({
-  clickFilterHandler: (genre) => {
-    dispatch(ActionCreators.filterItems(genre));
-    dispatch(ActionCreators.getGenre(genre));
+  clickFilterHandler: () => {
+    dispatch(getFilteredArray);
+    // dispatch(ActionCreator.getGenre(genre));
   },
 });
 

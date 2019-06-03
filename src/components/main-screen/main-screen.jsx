@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import genres from './../../mocks/genres.js';
 import GenreList from './../genre-list/genre-list.jsx';
 import MovieList from './../movie-list/movie-list.jsx';
 import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
@@ -75,7 +74,6 @@ const MainScreen = ({clickFilterHandler, films}) => {
 
           <WithActiveGenre
             films={films}
-            // genres={[...new Set(films.map((film) => film.genre))]}
             clickFilterHandler={clickFilterHandler}
           />
 

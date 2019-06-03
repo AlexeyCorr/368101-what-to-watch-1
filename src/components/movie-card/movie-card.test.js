@@ -5,10 +5,11 @@ import MovieCard from './movie-card.jsx';
 
 const mock =  {
   film: {
-    picture: `img/bohemian-rhapsody.jpg`,
+    genre: `Romance`,
+    previewImage: `img/bohemian-rhapsody.jpg`,
     title: `Bohemian Rhapsody`,
-    link: `movie-page.html`,
-    src: [`1.webm`, `2.mp4`]
+    videoLink: `movie-page.html`,
+    previewLink: `1.webm`,
   },
   isPlaying: false
 };

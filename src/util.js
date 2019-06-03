@@ -1,4 +1,4 @@
-export const Server2ResultMapper = (data) => {
+export const server2ResultMapper = (data) => {
   return {
     backgroundColor: data.background_color,
     backgroundImage: data.background_image,
