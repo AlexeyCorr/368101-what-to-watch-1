@@ -1,10 +1,28 @@
 const initialState = {
   isAuthorizationRequired: false,
+  user: {},
+  error: undefined,
 };
+
+const Operation = {
+  logIn: (email, password) => (dispatch, _getState, api) => {
+    return api.post(`/login`, {
+      email,
+      password
+    }).then((response) => {
+      dispatch(ActionCreator.logIn(response.data));
+      dispatch(ActionCreator.requireAuthorization(true));
+    }).catch((error) => {
+      dispatch(ActionCreator.logOut(error.message));
+    });
+  }
+}
 
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  LOG_IN: `LOG_IN`,
+  LOG_OUT: `LOG_OUT`,
 };
 
 const ActionCreator = {
@@ -12,6 +30,18 @@ const ActionCreator = {
     return {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: status,
+    };
+  },
+  logIn: (user) => {
+    return {
+      type: ActionType.LOG_IN,
+      payload: user,
+    };
+  },
+  logOut: (error) => {
+    return {
+      type: ActionType.LOG_OUT,
+      payload: error,
     };
   },
 };
@@ -22,14 +52,27 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         isAuthorizationRequired: action.payload,
       });
-  }
 
-  return state;
+    case ActionType.LOG_IN:
+      return Object.assign({}, state, {
+        user: action.payload,
+        error: undefined,
+      });
+
+    case ActionType.LOG_OUT:
+      return Object.assign({}, state, {
+        error: action.payload,
+      });
+
+    default:
+      return state;
+  }
 };
 
 
 export {
   ActionCreator,
   ActionType,
+  Operation,
   reducer,
 };

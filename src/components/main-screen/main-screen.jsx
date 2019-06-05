@@ -8,7 +8,18 @@ import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
 const WithActiveGenre = withActiveItem(GenreList);
 const WithActiveMovie = withActiveItem(MovieList);
 
-const MainScreen = ({clickFilterHandler, films, genres}) => {
+const MainScreen = ({clickFilterHandler, films, genres, isAuthorization, clickLoginHandler}) => {
+
+  const getAvatar = () => {
+    if (isAuthorization) {
+      return (
+        <div className="user-block__avatar">
+          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+        </div>
+      );
+    }
+    return <a href="sign-in.html" className="user-block__link" onClick={clickLoginHandler}>Sign in</a>;
+  };
 
   return (
     <React.Fragment>
@@ -29,9 +40,7 @@ const MainScreen = ({clickFilterHandler, films, genres}) => {
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            {getAvatar()}
           </div>
         </header>
 
@@ -106,8 +115,10 @@ const MainScreen = ({clickFilterHandler, films, genres}) => {
 
 MainScreen.propTypes = {
   clickFilterHandler: PropTypes.func.isRequired,
+  clickLoginHandler: PropTypes.func.isRequired,
   films: PropTypes.array.isRequired,
   genres: PropTypes.array.isRequired,
+  isAuthorization: PropTypes.bool.isRequired,
 };
 
 export default MainScreen;

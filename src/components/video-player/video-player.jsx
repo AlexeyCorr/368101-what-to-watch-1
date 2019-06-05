@@ -17,7 +17,7 @@ class VideoPlayer extends PureComponent {
 
     return (
       <video
-        width="100%"
+        className="player__video"
         poster={picture}
         ref={this._videoRef}
         muted

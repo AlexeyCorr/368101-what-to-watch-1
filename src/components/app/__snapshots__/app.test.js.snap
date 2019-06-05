@@ -153,16 +153,13 @@ Array [
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          className="user-block__link"
+          href="sign-in.html"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          Sign in
+        </a>
       </div>
     </header>
     <div
@@ -291,9 +288,9 @@ Array [
           onMouseLeave={[Function]}
         >
           <video
+            className="player__video"
             muted={true}
             poster="img/bohemian-rhapsody.jpg"
-            width="100%"
           >
             <source
               src="1.webm"
