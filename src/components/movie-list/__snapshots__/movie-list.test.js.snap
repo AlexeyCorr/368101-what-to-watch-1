@@ -10,9 +10,9 @@ exports[`renders correctly 1`] = `
     onMouseLeave={[Function]}
   >
     <video
+      className="player__video"
       muted={true}
       poster="img/bohemian-rhapsody.jpg"
-      width="100%"
     >
       <source
         src="1.webm"
