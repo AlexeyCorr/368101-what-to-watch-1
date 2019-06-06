@@ -26,9 +26,7 @@ exports[`renders correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
-      >
-        Bohemian Rhapsody
-      </a>
+      />
     </h3>
   </article>
 </div>

@@ -5,17 +5,17 @@ import VideoPlayer from './video-player.jsx';
 
 const mock =  {
   previewImage: `img/bohemian-rhapsody.jpg`,
-  previewLink: `2.mp4`,
+  previewVideoLink: `2.mp4`,
   isPlaying: false
 };
 
 it(`renders correctly`, () => {
-  const {previewImage, previewLink, isPlaying} = mock;
+  const {previewImage, previewVideoLink, isPlaying} = mock;
   const tree = renderer
     .create(<VideoPlayer
       isPlaying={isPlaying}
       picture={previewImage}
-      src={previewLink}
+      src={previewVideoLink}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

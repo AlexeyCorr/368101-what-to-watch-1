@@ -1,3 +1,5 @@
+import camelcaseKeys from 'camelcase-keys';
+
 const initialState = {
   isAuthorizationRequired: false,
   user: {},
@@ -10,8 +12,9 @@ const Operation = {
       email,
       password
     }).then((response) => {
-      dispatch(ActionCreator.logIn(response.data));
-      dispatch(ActionCreator.requireAuthorization(true));
+      const data = camelcaseKeys(response.data);
+
+      dispatch(ActionCreator.logIn(data));
     }).catch((error) => {
       dispatch(ActionCreator.logOut(error.message));
     });

@@ -4,6 +4,10 @@ import {connect} from 'react-redux';
 
 import {getUser} from './../../reducer/user/selectors.js';
 import {Operation} from './../../reducer/user/user.js';
+import Path from './../../paths.js';
+
+import Header from './../header/header.jsx';
+import Footer from './../footer/footer.jsx';
 
 class SingInScreen extends PureComponent {
   constructor(props) {
@@ -20,19 +24,12 @@ class SingInScreen extends PureComponent {
   }
 
   render() {
+    const {user} = this.props;
+
     return (
       <div className="user-page">
-        <header className="page-header user-page__head">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
 
-          <h1 className="page-title user-page__title">Sign in</h1>
-        </header>
+        <Header className={`user-page__head`} title={`Sign in`} user={user}/>
 
         <div className="sign-in user-page__content">
           <form
@@ -72,21 +69,17 @@ class SingInScreen extends PureComponent {
           </form>
         </div>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     );
+  }
+
+  componentDidMount() {
+    const {user} = this.props;
+
+    if (user.id) {
+      history.pushState(null, null, Path.MAIN);
+    }
   }
 
   _onSubmit(evt) {
@@ -97,6 +90,7 @@ class SingInScreen extends PureComponent {
 
     if (email && password) {
       logIn(email, password);
+      history.pushState(null, null, Path.MAIN);
     } else {
       throw new Error(`Введите email и пароль`);
     }

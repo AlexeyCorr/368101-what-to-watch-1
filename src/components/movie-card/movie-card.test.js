@@ -9,7 +9,7 @@ const mock =  {
     previewImage: `img/bohemian-rhapsody.jpg`,
     title: `Bohemian Rhapsody`,
     videoLink: `movie-page.html`,
-    previewLink: `1.webm`,
+    previewVideoLink: `1.webm`,
   },
   isPlaying: false
 };
