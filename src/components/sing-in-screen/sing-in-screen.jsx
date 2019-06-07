@@ -25,6 +25,7 @@ class SingInScreen extends PureComponent {
 
   render() {
     const {user} = this.props;
+    const {email, password} = this.state;
 
     return (
       <div className="user-page">
@@ -64,7 +65,11 @@ class SingInScreen extends PureComponent {
               </div>
             </div>
             <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit">Sign in</button>
+              <button
+                className="sign-in__btn"
+                type="submit"
+                disabled={!email || !password}
+              >Sign in</button>
             </div>
           </form>
         </div>
@@ -75,22 +80,27 @@ class SingInScreen extends PureComponent {
   }
 
   componentDidMount() {
-    const {user} = this.props;
+    const {user, history} = this.props;
 
     if (user.id) {
-      history.pushState(null, null, Path.MAIN);
+      history.push(Path.MAIN);
     }
   }
 
   _onSubmit(evt) {
-    const {logIn} = this.props;
+    const {logIn, history} = this.props;
     const {email, password} = this.state;
 
     evt.preventDefault();
 
     if (email && password) {
-      logIn(email, password);
-      history.pushState(null, null, Path.MAIN);
+      logIn(email, password).then(() => {
+        if (history.length > 1) {
+          history.goBack();
+        } else {
+          history.push(Path.MAIN);
+        }
+      });
     } else {
       throw new Error(`Введите email и пароль`);
     }
@@ -120,6 +130,7 @@ class SingInScreen extends PureComponent {
 SingInScreen.propTypes = {
   user: PropTypes.object,
   logIn: PropTypes.func.isRequired,
+  history: PropTypes.object,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -127,9 +138,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispachToProps = (dispatch) => ({
-  logIn: (email, password) => {
-    dispatch(Operation.logIn(email, password));
-  },
+  logIn: (email, password) => dispatch(Operation.logIn(email, password)),
 });
 
 export {SingInScreen};

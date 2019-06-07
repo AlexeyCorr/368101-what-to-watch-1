@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import Path from './../../paths.js';
+import {BASE_URL} from './../../constants.js';
 
 const Header = ({className, title, user}) => {
   return (
     <header className={`page-header ${className}`}>
       <div className="logo">
-        <a href="main.html" className="logo__link">
+        <a href="#" className="logo__link">
           <span className="logo__letter logo__letter--1">W</span>
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W</span>
@@ -20,7 +21,7 @@ const Header = ({className, title, user}) => {
       <div className="user-block">
         {user.avatarUrl ? (<div className="user-block__avatar">
           <Link to={Path.FAVORITES}>
-            <img src={user.avatarUrl} alt="User avatar" width="63" height="63" />
+            <img src={`${BASE_URL}${user.avatarUrl}`} alt="User avatar" width="63" height="63" />
           </Link></div>
         ) : (<Link to={Path.LOGIN} className="user-block__link">Sign in</Link>)}
       </div>

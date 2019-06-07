@@ -1,5 +1,7 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import Adapter from 'enzyme-adapter-react-16';
+import Enzyme, {shallow} from 'enzyme';
+import toJSON from 'enzyme-to-json';
 
 import Header from './header.jsx';
 
@@ -14,14 +16,15 @@ const mock = {
   title: `title`,
 };
 
+Enzyme.configure({adapter: new Adapter()});
+
 it(`renders correctly`, () => {
   const {user, className, title} = mock;
-  const tree = renderer
-    .create(<Header
-      user={user}
-      className={className}
-      title={title}
-    />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const header = shallow(<Header
+    user={user}
+    className={className}
+    title={title}
+  />);
+
+  expect(toJSON(header)).toMatchSnapshot();
 });

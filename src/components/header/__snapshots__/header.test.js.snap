@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<header
+  className="page-header class"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link"
+      href="#"
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <h1
+    className="page-title user-page__title"
+  >
+    title
+  </h1>
+  <div
+    className="user-block"
+  >
+    <div
+      className="user-block__avatar"
+    >
+      <Link
+        to="/favorites"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="https://es31-server.appspot.comimg/avatar.jpg"
+          width="63"
+        />
+      </Link>
+    </div>
+  </div>
+</header>
+`;

@@ -1,5 +1,8 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import Adapter from 'enzyme-adapter-react-16';
+import Enzyme, {shallow} from 'enzyme';
+import toJSON from 'enzyme-to-json';
+
 
 import {App} from './app.jsx';
 
@@ -19,17 +22,18 @@ const mock = {
   ],
 };
 
+Enzyme.configure({adapter: new Adapter()});
+
 it(`renders correctly`, () => {
   const {films, genre, genres} = mock;
   const clickFilterHandler = jest.fn();
 
-  const tree = renderer
-    .create(<App
-      films={films}
-      genre={genre}
-      genres={genres}
-      clickFilterHandler={clickFilterHandler}
-    />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const app = shallow(<App
+    films={films}
+    genre={genre}
+    genres={genres}
+    clickFilterHandler={clickFilterHandler}
+  />);
+
+  expect(toJSON(app)).toMatchSnapshot();
 });
