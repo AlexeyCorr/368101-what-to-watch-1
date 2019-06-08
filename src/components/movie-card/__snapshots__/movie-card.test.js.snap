@@ -9,11 +9,11 @@ exports[`renders correctly 1`] = `
   <video
     className="player__video"
     muted={true}
-    poster="img/bohemian-rhapsody.jpg"
+    poster="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
   >
     <source
-      src="1.webm"
-      type="video/webm"
+      src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+      type="video/mp4"
     />
   </video>
   <h3
@@ -21,10 +21,10 @@ exports[`renders correctly 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
       onClick={[Function]}
     >
-      Bohemian Rhapsody
+      Snatch
     </a>
   </h3>
 </article>

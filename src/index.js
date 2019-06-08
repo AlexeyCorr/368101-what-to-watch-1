@@ -4,14 +4,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
 import {compose} from 'recompose';
+import {BrowserRouter} from 'react-router-dom';
 
+import Path from './paths.js';
 import {createAPI} from './api';
 import reducer from './reducer/index.js';
 import {Operation} from './reducer/data/data.js';
 import App from './components/app/app.jsx';
 
 const init = () => {
-  const api = createAPI((...args) => store.dispatch(...args));
+  const api = createAPI(() => history.pushState(null, null, Path.LOGIN));
 
   const store = createStore(
     reducer,
@@ -25,7 +27,9 @@ const init = () => {
 
   ReactDOM.render(
     <Provider store={store}>
-      <App/>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
     </Provider>,
     document.querySelector(`#root`)
   );

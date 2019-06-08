@@ -1,4 +1,4 @@
-import {server2ResultMapper} from './../../util.js';
+import camelcaseKeys from 'camelcase-keys';
 
 const initialState = {
   genre: `All genres`,
@@ -14,7 +14,9 @@ const Operation = {
   loadFilms: () => (dispatch, _getState, api) => {
     return api.get(`/films`)
       .then((response) => {
-        dispatch(ActionCreator.loadFilms(response.data));
+        const data = camelcaseKeys(response.data);
+
+        dispatch(ActionCreator.loadFilms(data));
       });
   },
 };
@@ -44,7 +46,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.LOAD_FILMS:
       return Object.assign({}, state, {
-        films: action.payload.map((data) => server2ResultMapper(data)),
+        films: action.payload,
       });
   }
 

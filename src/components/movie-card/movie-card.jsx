@@ -12,7 +12,7 @@ const MovieCard = (props) => {
     isPlaying,
   } = props;
 
-  const {title, videoLink, previewImage, previewLink} = film;
+  const {name, videoLink, previewImage, previewVideoLink} = film;
 
   return (
     <article
@@ -23,7 +23,7 @@ const MovieCard = (props) => {
       <VideoPlayer
         isPlaying={isPlaying}
         picture={previewImage}
-        src={previewLink}
+        src={previewVideoLink}
       />
       <h3 className="small-movie-card__title">
         <a
@@ -31,10 +31,10 @@ const MovieCard = (props) => {
           href={videoLink}
           onClick={(evt) => {
             evt.preventDefault();
-            clickHandler(film.title);
+            clickHandler(name);
           }}
         >
-          {title}
+          {name}
         </a>
       </h3>
     </article>
