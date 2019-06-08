@@ -1,22 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
+import {films} from './../../mocks/films.js';
 import MovieList from './movie-list.jsx';
 
-const mock = {
-  films: [
-    {
-      genre: `Romance`,
-      previewImage: `img/bohemian-rhapsody.jpg`,
-      title: `Bohemian Rhapsody`,
-      videoLink: `movie-page.html`,
-      previewVideoLink: `1.webm`,
-    }
-  ]
-};
-
 it(`renders correctly`, () => {
-  const {films} = mock;
   const clickHandler = jest.fn();
   const tree = renderer
     .create(<MovieList

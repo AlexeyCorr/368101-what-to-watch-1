@@ -1,16 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
+import {genres} from './../../mocks/genres.js';
 import GenreList from './genre-list.jsx'
 
-const mock = {
-  genres: [
-    `Romance`
-  ]
-}
-
 it(`GenreList renders correctly`, () => {
-  const {genres} = mock;
   const clickHandler = jest.fn();
 
   const tree = renderer

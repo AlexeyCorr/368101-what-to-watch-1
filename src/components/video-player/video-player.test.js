@@ -1,19 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
+import {films} from './../../mocks/films.js';
 import VideoPlayer from './video-player.jsx';
 
-const mock =  {
-  previewImage: `img/bohemian-rhapsody.jpg`,
-  previewVideoLink: `2.mp4`,
-  isPlaying: false
-};
-
 it(`renders correctly`, () => {
-  const {previewImage, previewVideoLink, isPlaying} = mock;
+  const {previewImage, previewVideoLink} = films[0];
   const tree = renderer
     .create(<VideoPlayer
-      isPlaying={isPlaying}
+      isPlaying={false}
       picture={previewImage}
       src={previewVideoLink}
     />)

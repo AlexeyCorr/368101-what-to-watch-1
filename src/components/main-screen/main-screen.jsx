@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {ActionCreator} from './../../reducer/data/data.js';
 import {getGenres, getFilteredArray} from './../../reducer/data/selectors.js';
-import {getAuthorizationStatus, getUser} from './../../reducer/user/selectors.js';
+import {getUser} from './../../reducer/user/selectors.js';
 
 import Header from './../header/header.jsx';
 import Footer from './../footer/footer.jsx';
@@ -97,7 +97,6 @@ MainScreen.propTypes = {
   clickFilterHandler: PropTypes.func.isRequired,
   films: PropTypes.array.isRequired,
   genres: PropTypes.array.isRequired,
-  isAuthorization: PropTypes.bool.isRequired,
   user: PropTypes.object,
 };
 
@@ -105,7 +104,6 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   genres: getGenres(state),
   user: getUser(state),
   films: getFilteredArray(state),
-  isAuthorization: getAuthorizationStatus(state),
 });
 
 const mapDispachToProps = (dispatch) => ({

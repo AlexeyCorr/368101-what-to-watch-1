@@ -1,34 +1,27 @@
 import React from 'react';
-import MainScreen from './main-screen.jsx';
 import renderer from 'react-test-renderer';
+import {StaticRouter} from 'react-router';
 
-const mock = {
-  films: [
-    {
-      genre: `Romance`,
-      previewImage: `img/bohemian-rhapsody.jpg`,
-      title: `Bohemian Rhapsody`,
-      videoLink: `movie-page.html`,
-      previewLink: `1.webm`,
-    }
-  ],
-  genres: [
-    `Romance`
-  ],
-};
+import {user} from './../../mocks/user.js';
+import {films} from './../../mocks/films.js';
+import {genres} from './../../mocks/genres.js';
+import {MainScreen} from './main-screen.jsx';
 
 it(`renders correctly`, () => {
-  const {films, genres} = mock;
   const clickFilterHandler = jest.fn();
   const clickMovieHandler = jest.fn();
 
   const tree = renderer
-    .create(<MainScreen
-      films={films}
-      genres={genres}
-      clickFilterHandler={clickFilterHandler}
-      clickMovieHandler={clickMovieHandler}
-    />)
-    .toJSON();
+    .create(
+      <StaticRouter>
+        <MainScreen
+          films={films}
+          genres={genres}
+          user={user}
+          clickFilterHandler={clickFilterHandler}
+          clickMovieHandler={clickMovieHandler}
+        />
+      </StaticRouter>
+    ).toJSON();
   expect(tree).toMatchSnapshot();
 });

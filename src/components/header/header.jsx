@@ -4,18 +4,12 @@ import {Link} from 'react-router-dom';
 
 import Path from './../../paths.js';
 import {BASE_URL} from './../../constants.js';
+import Logo from './../logo/logo.jsx';
 
 const Header = ({className, title, user}) => {
   return (
     <header className={`page-header ${className}`}>
-      <div className="logo">
-        <a href="#" className="logo__link">
-          <span className="logo__letter logo__letter--1">W</span>
-          <span className="logo__letter logo__letter--2">T</span>
-          <span className="logo__letter logo__letter--3">W</span>
-        </a>
-      </div>
-
+      <Logo/>
       <h1 className="page-title user-page__title">{title}</h1>
 
       <div className="user-block">

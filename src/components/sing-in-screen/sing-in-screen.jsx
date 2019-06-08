@@ -68,7 +68,7 @@ class SingInScreen extends PureComponent {
               <button
                 className="sign-in__btn"
                 type="submit"
-                disabled={!email || !password}
+                disabled={!email && !password}
               >Sign in</button>
             </div>
           </form>

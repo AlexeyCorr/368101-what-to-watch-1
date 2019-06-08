@@ -8,8 +8,9 @@ exports[`renders correctly 1`] = `
     className="logo"
   >
     <a
-      className="logo__link"
-      href="#"
+      className="logo__link logo__link--undefined"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -39,16 +40,17 @@ exports[`renders correctly 1`] = `
     <div
       className="user-block__avatar"
     >
-      <Link
-        to="/favorites"
+      <a
+        href="/favorites"
+        onClick={[Function]}
       >
         <img
           alt="User avatar"
           height="63"
-          src="https://es31-server.appspot.comimg/avatar.jpg"
+          src="https://es31-server.appspot.com/wtw/static/avatar/7.jpg"
           width="63"
         />
-      </Link>
+      </a>
     </div>
   </div>
 </header>
