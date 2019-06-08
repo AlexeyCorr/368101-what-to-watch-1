@@ -2,8 +2,8 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {getUser} from './../../reducer/user/selectors.js';
-import {Operation} from './../../reducer/user/user.js';
+import {getUser, getError} from './../../reducer/user/selectors.js';
+import {Operation, ActionCreator} from './../../reducer/user/user.js';
 import Path from './../../paths.js';
 
 import Header from './../header/header.jsx';
@@ -24,7 +24,7 @@ class SingInScreen extends PureComponent {
   }
 
   render() {
-    const {user} = this.props;
+    const {user, error} = this.props;
     const {email, password} = this.state;
 
     return (
@@ -38,6 +38,9 @@ class SingInScreen extends PureComponent {
             className="sign-in__form"
             onSubmit={this._onSubmit}
           >
+            <div className="sign-in__message">
+            <p>{error}</p>
+            </div>
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input
@@ -68,7 +71,7 @@ class SingInScreen extends PureComponent {
               <button
                 className="sign-in__btn"
                 type="submit"
-                disabled={!email && !password}
+                // disabled={!email && !password}
               >Sign in</button>
             </div>
           </form>
@@ -88,7 +91,7 @@ class SingInScreen extends PureComponent {
   }
 
   _onSubmit(evt) {
-    const {logIn, history} = this.props;
+    const {logIn, logError, history} = this.props;
     const {email, password} = this.state;
 
     evt.preventDefault();
@@ -102,7 +105,7 @@ class SingInScreen extends PureComponent {
         }
       });
     } else {
-      throw new Error(`Введите email и пароль`);
+      logError(`Fields email and password is required.`)
     }
   }
 
@@ -131,14 +134,18 @@ SingInScreen.propTypes = {
   user: PropTypes.object,
   logIn: PropTypes.func.isRequired,
   history: PropTypes.object,
+  logError: PropTypes.func,
+  error: PropTypes.string,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   user: getUser(state),
+  error: getError(state),
 });
 
 const mapDispachToProps = (dispatch) => ({
   logIn: (email, password) => dispatch(Operation.logIn(email, password)),
+  logError: (error) =>  dispatch(ActionCreator.logError(error)),
 });
 
 export {SingInScreen};
