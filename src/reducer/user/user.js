@@ -2,7 +2,7 @@ import camelcaseKeys from 'camelcase-keys';
 
 const initialState = {
   user: {},
-  error: ``,
+  error: undefined,
 };
 
 const ActionType = {

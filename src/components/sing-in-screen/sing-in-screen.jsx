@@ -25,7 +25,6 @@ class SingInScreen extends PureComponent {
 
   render() {
     const {user, error} = this.props;
-    const {email, password} = this.state;
 
     return (
       <div className="user-page">
@@ -39,7 +38,7 @@ class SingInScreen extends PureComponent {
             onSubmit={this._onSubmit}
           >
             <div className="sign-in__message">
-            <p>{error}</p>
+              <p>{error}</p>
             </div>
             <div className="sign-in__fields">
               <div className="sign-in__field">
@@ -71,7 +70,6 @@ class SingInScreen extends PureComponent {
               <button
                 className="sign-in__btn"
                 type="submit"
-                // disabled={!email && !password}
               >Sign in</button>
             </div>
           </form>
@@ -105,7 +103,7 @@ class SingInScreen extends PureComponent {
         }
       });
     } else {
-      logError(`Fields email and password is required.`)
+      logError(`Fields email and password is required.`);
     }
   }
 
@@ -145,7 +143,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 
 const mapDispachToProps = (dispatch) => ({
   logIn: (email, password) => dispatch(Operation.logIn(email, password)),
-  logError: (error) =>  dispatch(ActionCreator.logError(error)),
+  logError: (error) => dispatch(ActionCreator.logError(error)),
 });
 
 export {SingInScreen};

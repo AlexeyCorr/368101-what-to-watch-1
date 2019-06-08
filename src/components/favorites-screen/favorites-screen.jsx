@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import withAuthorization from './../../hocs/with-authorization/with-authorization.jsx';
 import Footer from './../footer/footer.jsx';
 import Header from './../header/header.jsx';
+import MovieList from './../movie-list/movie-list.jsx';
+import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
+import {getFilms} from './../../reducer/data/selectors.js';
 
-const FavoritesScreen = ({user}) => {
+const WithActiveMovie = withActiveItem(MovieList);
+
+const FavoritesScreen = ({films, user}) => {
   return (
     <div className="user-page">
 
@@ -14,26 +20,10 @@ const FavoritesScreen = ({user}) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__movies-list">
-          <article className="small-movie-card catalog__movies-card">
-            <button className="small-movie-card__play-btn" type="button">Play</button>
-            <div className="small-movie-card__image">
-              <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-            </h3>
-          </article>
-          <article className="small-movie-card catalog__movies-card">
-            <button className="small-movie-card__play-btn" type="button">Play</button>
-            <div className="small-movie-card__image">
-              <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-            </h3>
-          </article>
-        </div>
+        <WithActiveMovie
+          films={films}
+        />
+
       </section>
 
       <Footer/>
@@ -42,9 +32,14 @@ const FavoritesScreen = ({user}) => {
 };
 
 FavoritesScreen.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.object.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export {FavoritesScreen};
 
-export default withAuthorization(FavoritesScreen);
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  films: getFilms(state),
+});
+
+export default connect(mapStateToProps)(withAuthorization(FavoritesScreen));

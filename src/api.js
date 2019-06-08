@@ -11,7 +11,7 @@ export const createAPI = (onLoginFail) => {
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    if (err.response.status === 403) {
+    if (err.response.status !== 200) {
       onLoginFail();
     }
     return err;
