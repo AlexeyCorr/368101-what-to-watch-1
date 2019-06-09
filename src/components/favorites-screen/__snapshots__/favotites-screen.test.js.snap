@@ -88,7 +88,7 @@ exports[`renders correctly 1`] = `
         >
           <a
             className="small-movie-card__link"
-            href="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
+            href="/film/1"
             onClick={[Function]}
           >
             Snatch
@@ -115,7 +115,7 @@ exports[`renders correctly 1`] = `
         >
           <a
             className="small-movie-card__link"
-            href="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
+            href="/film/2"
             onClick={[Function]}
           >
             War of the Worlds

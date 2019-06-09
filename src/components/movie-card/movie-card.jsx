@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
+import Path from './../../paths.js';
 import VideoPlayer from './../video-player/video-player.jsx';
 
 const MovieCard = (props) => {
@@ -12,7 +14,7 @@ const MovieCard = (props) => {
     isPlaying,
   } = props;
 
-  const {name, videoLink, previewImage, previewVideoLink} = film;
+  const {name, previewImage, previewVideoLink, id} = film;
 
   return (
     <article
@@ -26,16 +28,15 @@ const MovieCard = (props) => {
         src={previewVideoLink}
       />
       <h3 className="small-movie-card__title">
-        <a
+        <Link
           className="small-movie-card__link"
-          href={videoLink}
-          onClick={(evt) => {
-            evt.preventDefault();
-            clickHandler(name);
+          to={`${Path.FILM}${id}`}
+          onClick={() => {
+            clickHandler(film);
           }}
         >
           {name}
-        </a>
+        </Link>
       </h3>
     </article>
   );
