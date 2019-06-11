@@ -13,7 +13,6 @@ import MovieList from './../movie-list/movie-list.jsx';
 import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
 
 const WithActiveGenre = withActiveItem(GenreList);
-const WithActiveMovie = withActiveItem(MovieList);
 
 class MainScreen extends PureComponent {
   render() {
@@ -77,7 +76,7 @@ class MainScreen extends PureComponent {
               clickFilterHandler={clickFilterHandler}
             />
 
-            <WithActiveMovie
+            <MovieList
               films={films}
             />
 

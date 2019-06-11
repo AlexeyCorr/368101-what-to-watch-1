@@ -3,19 +3,20 @@ import renderer from 'react-test-renderer';
 import {StaticRouter} from 'react-router'
 
 import {films} from './../../mocks/films.js';
-import MovieCard from './movie-card.jsx';
+import {MovieCard} from './movie-card.jsx';
 
 it(`renders correctly`, () => {
   const mouseEnterHandler = jest.fn();
   const mouseLeaveHandler = jest.fn();
-  const clickHandler = jest.fn();
+  const clickFilmHandler = jest.fn();
   const tree = renderer
     .create(<StaticRouter>
       <MovieCard
         film={films[0]}
+        activeFilm={films[0]}
         mouseEnterHandler={mouseEnterHandler}
         mouseLeaveHandler={mouseLeaveHandler}
-        clickHandler={clickHandler}
+        clickFilmHandler={clickFilmHandler}
         isPlaying={true}
       />
     </StaticRouter>).toJSON();
