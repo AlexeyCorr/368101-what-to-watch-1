@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
+import {getFilm} from './../../reducer/data/selectors.js';
+import {ActionCreator} from './../../reducer/data/data.js';
 import Path from './../../paths.js';
 import VideoPlayer from './../video-player/video-player.jsx';
 
@@ -10,8 +13,8 @@ const MovieCard = (props) => {
     film,
     mouseEnterHandler,
     mouseLeaveHandler,
-    clickHandler,
     isPlaying,
+    clickFilmHandler,
   } = props;
 
   const {name, previewImage, previewVideoLink, id} = film;
@@ -32,7 +35,7 @@ const MovieCard = (props) => {
           className="small-movie-card__link"
           to={`${Path.FILM}${id}`}
           onClick={() => {
-            clickHandler(film);
+            clickFilmHandler(film);
           }}
         >
           {name}
@@ -44,10 +47,23 @@ const MovieCard = (props) => {
 
 MovieCard.propTypes = {
   film: PropTypes.object.isRequired,
+  activeFilm: PropTypes.object.isRequired,
   mouseEnterHandler: PropTypes.func.isRequired,
   mouseLeaveHandler: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
-  clickHandler: PropTypes.func,
+  clickFilmHandler: PropTypes.func.isRequired,
 };
 
-export default MovieCard;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  activeFilm: getFilm(state),
+});
+
+const mapDispachToProps = (dispatch) => ({
+  clickFilmHandler: (film) => {
+    dispatch(ActionCreator.getFilm(film));
+  },
+});
+
+export {MovieCard};
+
+export default connect(mapStateToProps, mapDispachToProps)(MovieCard);

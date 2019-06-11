@@ -3,10 +3,12 @@ import camelcaseKeys from 'camelcase-keys';
 const initialState = {
   genre: `All genres`,
   films: [],
+  film: {},
 };
 
 const ActionType = {
   GET_GENRE: `GET_GENRE`,
+  GET_FILM: `GET_FILM`,
   LOAD_FILMS: `LOAD_FILMS`,
 };
 
@@ -35,6 +37,13 @@ const ActionCreator = {
       payload: films,
     };
   },
+
+  getFilm: (film) => {
+    return {
+      type: ActionType.GET_FILM,
+      payload: film,
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -47,6 +56,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FILMS:
       return Object.assign({}, state, {
         films: action.payload,
+      });
+
+    case ActionType.GET_FILM:
+      return Object.assign({}, state, {
+        film: action.payload,
       });
   }
 

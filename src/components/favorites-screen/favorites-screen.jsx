@@ -6,10 +6,7 @@ import withAuthorization from './../../hocs/with-authorization/with-authorizatio
 import Footer from './../footer/footer.jsx';
 import Header from './../header/header.jsx';
 import MovieList from './../movie-list/movie-list.jsx';
-import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
 import {getFilms} from './../../reducer/data/selectors.js';
-
-const WithActiveMovie = withActiveItem(MovieList);
 
 const FavoritesScreen = ({films, user}) => {
   return (
@@ -20,7 +17,7 @@ const FavoritesScreen = ({films, user}) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <WithActiveMovie
+        <MovieList
           films={films}
         />
 

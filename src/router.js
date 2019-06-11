@@ -12,7 +12,7 @@ const Router = () => (
     <Route path={Path.MAIN} exact component={MainScreen}/>
     <Route path={Path.LOGIN} component={SingInScreen}/>
     <Route path={Path.FAVORITES} component={FavoritesScreen}/>
-    <Route path={Path.FILM} component={MovieDetailsScreen}/>
+    <Route path={`${Path.FILM}:id`} component={MovieDetailsScreen}/>
   </Switch>
 );
 
