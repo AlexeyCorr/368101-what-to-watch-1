@@ -6,12 +6,13 @@ import Footer from './../footer/footer.jsx';
 import Header from './../header/header.jsx';
 import MovieList from './../movie-list/movie-list.jsx';
 
-import {getFilm, getFilms} from './../../reducer/data/selectors.js';
+import {Operation} from './../../reducer/data/data.js';
+import {getFilm, getFilms, getComments} from './../../reducer/data/selectors.js';
 import {getUser} from './../../reducer/user/selectors.js';
 
 const MovieDetailsScreen = (props) => {
-  const {user, film, films} = props;
-
+  const {user, film, films, comments, loadComments} = props;
+  loadComments(film.id);
   const getTimeline = (time) => {
     const hours = time >= 60 ? Math.trunc(time / 60) : 0;
     const min = time - hours * 60;
@@ -26,7 +27,7 @@ const MovieDetailsScreen = (props) => {
       >
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={film.backgroundImage} alt="The Grand Budapest Hotel" />
+            <img src={film.backgroundImage} alt={film.name} />
           </div>
           <h1 className="visually-hidden">WTW</h1>
 
@@ -60,7 +61,7 @@ const MovieDetailsScreen = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={film.posterImage} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={film.posterImage} alt={`${film.name} poster`} width="218" height="327" />
             </div>
             <div className="movie-card__desc">
               <nav className="movie-nav movie-card__nav">
@@ -127,14 +128,21 @@ MovieDetailsScreen.propTypes = {
   user: PropTypes.object,
   film: PropTypes.object,
   films: PropTypes.array,
+  loadComments: PropTypes.func,
+  comments: PropTypes.array,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   user: getUser(state),
   film: getFilm(state),
   films: getFilms(state),
+  comments: getComments(state),
+});
+
+const mapDispachToProps = (dispatch) => ({
+  loadComments: (id) => dispatch(Operation.loadComments(id).then((comment) => console.log(comment)).catch((error) => console.log(error))),
 });
 
 export {MovieDetailsScreen};
 
-export default connect(mapStateToProps)(MovieDetailsScreen);
+export default connect(mapStateToProps, mapDispachToProps)(MovieDetailsScreen);

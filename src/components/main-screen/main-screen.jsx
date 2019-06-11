@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {ActionCreator} from './../../reducer/data/data.js';
-import {getGenres, getFilteredArray} from './../../reducer/data/selectors.js';
+import {getGenres, getFilteredArray, getPromoFilm} from './../../reducer/data/selectors.js';
 import {getUser} from './../../reducer/user/selectors.js';
 
 import Header from './../header/header.jsx';
@@ -21,13 +21,16 @@ class MainScreen extends PureComponent {
       genres,
       clickFilterHandler,
       user,
+      promoFilm,
     } = this.props;
 
     return (
       <React.Fragment>
-        <section className="movie-card">
+        <section
+          className="movie-card"
+          style={{backgroundColor: promoFilm.backgroundColor || `#fff`}}>
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={promoFilm.backgroundImage} alt={promoFilm.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -37,15 +40,15 @@ class MainScreen extends PureComponent {
           <div className="movie-card__wrap">
             <div className="movie-card__info">
               <div className="movie-card__poster">
-                <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+                <img src={promoFilm.posterImage} alt={`${promoFilm.name} poster`} width="218"
                   height="327" />
               </div>
 
               <div className="movie-card__desc">
-                <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+                <h2 className="movie-card__title">{promoFilm.name}</h2>
                 <p className="movie-card__meta">
-                  <span className="movie-card__genre">Drama</span>
-                  <span className="movie-card__year">2014</span>
+                  <span className="movie-card__genre">{promoFilm.genre}</span>
+                  <span className="movie-card__year">{promoFilm.released}</span>
                 </p>
 
                 <div className="movie-card__buttons">
@@ -97,12 +100,14 @@ MainScreen.propTypes = {
   films: PropTypes.array.isRequired,
   genres: PropTypes.array.isRequired,
   user: PropTypes.object,
+  promoFilm: PropTypes.object,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   genres: getGenres(state),
   user: getUser(state),
   films: getFilteredArray(state),
+  promoFilm: getPromoFilm(state),
 });
 
 const mapDispachToProps = (dispatch) => ({
