@@ -2,22 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
+// import {Operation} from './../../reducer/data/data.js';
+import {getFilm, getFilms} from './../../reducer/data/selectors.js';
+import {getUser} from './../../reducer/user/selectors.js';
+
 import Footer from './../footer/footer.jsx';
 import Header from './../header/header.jsx';
 import MovieList from './../movie-list/movie-list.jsx';
+import Tabs from './../tabs/tabs.jsx';
+import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
 
-import {Operation} from './../../reducer/data/data.js';
-import {getFilm, getFilms, getComments} from './../../reducer/data/selectors.js';
-import {getUser} from './../../reducer/user/selectors.js';
+const WithActiveTabs = withActiveItem(Tabs);
 
 const MovieDetailsScreen = (props) => {
-  const {user, film, films, comments, loadComments} = props;
-  loadComments(film.id);
-  const getTimeline = (time) => {
-    const hours = time >= 60 ? Math.trunc(time / 60) : 0;
-    const min = time - hours * 60;
-    return `${hours}h ${min}m`;
-  };
+  const {user, film, films} = props;
 
   return (
     <React.Fragment>
@@ -63,49 +61,9 @@ const MovieDetailsScreen = (props) => {
             <div className="movie-card__poster movie-card__poster--big">
               <img src={film.posterImage} alt={`${film.name} poster`} width="218" height="327" />
             </div>
-            <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-              <div className="movie-card__text movie-card__row">
-                <div className="movie-card__text-col">
-                  <p className="movie-card__details-item">
-                    <strong className="movie-card__details-name">Director</strong>
-                    <span className="movie-card__details-value">{film.director}</span>
-                  </p>
-                  <p className="movie-card__details-item">
-                    <strong className="movie-card__details-name">Starring</strong>
-                    <span className="movie-card__details-value">
-                      {film.starring.map((it) => `${it}\n`)}
-                    </span>
-                  </p>
-                </div>
-                <div className="movie-card__text-col">
-                  <p className="movie-card__details-item">
-                    <strong className="movie-card__details-name">Run Time</strong>
-                    <span className="movie-card__details-value">{getTimeline(film.runTime)}</span>
-                  </p>
-                  <p className="movie-card__details-item">
-                    <strong className="movie-card__details-name">Genre</strong>
-                    <span className="movie-card__details-value">{film.genre}</span>
-                  </p>
-                  <p className="movie-card__details-item">
-                    <strong className="movie-card__details-name">Released</strong>
-                    <span className="movie-card__details-value">{film.released}</span>
-                  </p>
-                </div>
-              </div>
-            </div>
+
+            <WithActiveTabs film={film}/>
+
           </div>
         </div>
       </section>
@@ -113,7 +71,7 @@ const MovieDetailsScreen = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MovieList films={films}/>
+          <MovieList films={films.filter((it) => it.genre === film.genre)}/>
 
         </section>
 
@@ -136,13 +94,13 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   user: getUser(state),
   film: getFilm(state),
   films: getFilms(state),
-  comments: getComments(state),
+  // comments: getComments(state),
 });
 
-const mapDispachToProps = (dispatch) => ({
-  loadComments: (id) => dispatch(Operation.loadComments(id).then((comment) => console.log(comment)).catch((error) => console.log(error))),
-});
+// const mapDispachToProps = (dispatch) => ({
+//   // loadComments: (id) => dispatch(Operation.loadComments(id).then((comment) => console.log(comment)).catch((error) => console.log(error))),
+// });
 
 export {MovieDetailsScreen};
 
-export default connect(mapStateToProps, mapDispachToProps)(MovieDetailsScreen);
+export default connect(mapStateToProps)(MovieDetailsScreen);
