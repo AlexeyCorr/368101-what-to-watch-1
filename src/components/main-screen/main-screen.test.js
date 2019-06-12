@@ -16,6 +16,7 @@ it(`renders correctly`, () => {
       <StaticRouter>
         <MainScreen
           films={films}
+          promoFilm={films[1]}
           genres={genres}
           user={user}
           clickFilterHandler={clickFilterHandler}

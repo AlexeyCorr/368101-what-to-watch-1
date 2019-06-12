@@ -41,7 +41,7 @@ class SingInScreen extends PureComponent {
               <p>{error}</p>
             </div>
             <div className="sign-in__fields">
-              <div className="sign-in__field">
+              <div className={`sign-in__field ${error ? `sign-in__field--error` : ``}`}>
                 <input
                   className="sign-in__input"
                   type="email"
