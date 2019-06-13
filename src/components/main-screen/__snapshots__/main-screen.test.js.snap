@@ -4,13 +4,18 @@ exports[`renders correctly 1`] = `
 Array [
   <section
     className="movie-card"
+    style={
+      Object {
+        "backgroundColor": "#9B7E61",
+      }
+    }
   >
     <div
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="War of the Worlds"
+        src="https://es31-server.appspot.com/wtw/static/film/background/War_of_the_Worlds.jpg"
       />
     </div>
     <h1
@@ -79,9 +84,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="War of the Worlds poster"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://es31-server.appspot.com/wtw/static/film/poster/War_of_the_Worlds.jpg"
             width="218"
           />
         </div>
@@ -91,7 +96,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            The Grand Budapest Hotel
+            War of the Worlds
           </h2>
           <p
             className="movie-card__meta"
@@ -99,12 +104,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Drama
+              Adventure
             </span>
             <span
               className="movie-card__year"
             >
-              2014
+              2005
             </span>
           </p>
           <div
@@ -323,9 +328,15 @@ Array [
       </div>
       <div
         className="catalog__more"
+        style={
+          Object {
+            "display": "none",
+          }
+        }
       >
         <button
           className="catalog__button"
+          onClick={[Function]}
           type="button"
         >
           Show more
