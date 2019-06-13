@@ -83,9 +83,9 @@ class MainScreen extends PureComponent {
               films={films}
             />
 
-            <div className="catalog__more">
+            {/* <div className="catalog__more">
               <button className="catalog__button" type="button">Show more</button>
-            </div>
+            </div> */}
           </section>
 
           <Footer/>

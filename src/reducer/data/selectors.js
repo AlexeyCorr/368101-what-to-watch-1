@@ -15,10 +15,6 @@ export const getComments = (state) => {
   return state[NAME_SPACE].comments;
 };
 
-export const getFilm = (state) => {
-  return state[NAME_SPACE].film;
-};
-
 export const getGenres = (state) => {
   return state[NAME_SPACE].films.map((it) => it.genre);
 };

@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import {StaticRouter} from 'react-router'
 
 import {films} from './../../mocks/films.js';
-import {MovieCard} from './movie-card.jsx';
+import MovieCard from './movie-card.jsx';
 
 it(`renders correctly`, () => {
   const mouseEnterHandler = jest.fn();
@@ -13,7 +13,6 @@ it(`renders correctly`, () => {
     .create(<StaticRouter>
       <MovieCard
         film={films[0]}
-        activeFilm={films[0]}
         mouseEnterHandler={mouseEnterHandler}
         mouseLeaveHandler={mouseLeaveHandler}
         clickFilmHandler={clickFilmHandler}

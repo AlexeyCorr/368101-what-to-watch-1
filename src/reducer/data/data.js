@@ -5,12 +5,10 @@ const initialState = {
   films: [],
   comments: [],
   promoFilm: {},
-  film: {},
 };
 
 const ActionType = {
   GET_GENRE: `GET_GENRE`,
-  GET_FILM: `GET_FILM`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
@@ -73,13 +71,6 @@ const ActionCreator = {
       payload: genre,
     };
   },
-
-  getFilm: (film) => {
-    return {
-      type: ActionType.GET_FILM,
-      payload: film,
-    };
-  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -102,11 +93,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_GENRE:
       return Object.assign({}, state, {
         genre: action.payload,
-      });
-
-    case ActionType.GET_FILM:
-      return Object.assign({}, state, {
-        film: action.payload,
       });
   }
 

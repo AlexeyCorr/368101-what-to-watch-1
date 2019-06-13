@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 // import {Operation} from './../../reducer/data/data.js';
-import {getFilm, getFilms} from './../../reducer/data/selectors.js';
+import {getFilms} from './../../reducer/data/selectors.js';
 import {getUser} from './../../reducer/user/selectors.js';
 
 import Footer from './../footer/footer.jsx';
@@ -15,7 +15,13 @@ import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
 const WithActiveTabs = withActiveItem(Tabs);
 
 const MovieDetailsScreen = (props) => {
-  const {user, film, films} = props;
+  const {user, films, match} = props;
+
+  const film = films[match.params.id];
+
+  if (!film) {
+    return null;
+  }
 
   return (
     <React.Fragment>
@@ -84,15 +90,14 @@ const MovieDetailsScreen = (props) => {
 
 MovieDetailsScreen.propTypes = {
   user: PropTypes.object,
-  film: PropTypes.object,
   films: PropTypes.array,
   loadComments: PropTypes.func,
   comments: PropTypes.array,
+  match: PropTypes.object,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   user: getUser(state),
-  film: getFilm(state),
   films: getFilms(state),
   // comments: getComments(state),
 });
