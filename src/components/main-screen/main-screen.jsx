@@ -13,7 +13,6 @@ import Header from './../header/header.jsx';
 import Footer from './../footer/footer.jsx';
 import GenreList from './../genre-list/genre-list.jsx';
 import MovieList from './../movie-list/movie-list.jsx';
-import MovieScreen from './../movie-screen/movie-screen.jsx';
 import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
 
 const WithActiveGenre = withActiveItem(GenreList);
@@ -28,7 +27,7 @@ class MainScreen extends PureComponent {
       user,
       promoFilm,
     } = this.props;
-    console.log(films)
+
     return (
       <React.Fragment>
         <section
@@ -41,8 +40,6 @@ class MainScreen extends PureComponent {
           <h1 className="visually-hidden">WTW</h1>
 
           <Header className={`movie-card__head`} user={user}/>
-
-          {/* {promoFilm.name ? <MovieScreen film={promoFilm}/> : null} */}
 
           <div className="movie-card__wrap">
             <div className="movie-card__info">

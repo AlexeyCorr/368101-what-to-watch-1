@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {getFilms} from './../../reducer/data/selectors'
+import {getFilms} from './../../reducer/data/selectors';
 import VideoPlayer from './../video-player/video-player.jsx';
 
 const MovieScreen = ({films, match, history}) => {
-  const film = films[match.params.id];
+  const film = films[match.params.id - 1];
 
-  console.log(match);
   if (!film) {
     return null;
   }
@@ -37,6 +36,6 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   films: getFilms(state),
 });
 
-export {MovieScreen}
+export {MovieScreen};
 
 export default connect(mapStateToProps)(MovieScreen);

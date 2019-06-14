@@ -19,8 +19,8 @@ const WithActiveTabs = withActiveItem(Tabs);
 
 const MovieDetailsScreen = (props) => {
   const {user, films, match} = props;
-  console.log(films);
-  const film = films[match.params.id];
+
+  const film = films[match.params.id - 1];
 
   if (!film) {
     return null;
@@ -48,15 +48,15 @@ const MovieDetailsScreen = (props) => {
                 <span className="movie-card__year">{film.released}</span>
               </p>
               <div className="movie-card__buttons">
-                  <Link
-                    className="btn btn--play movie-card__button"
-                    to={`${Path.SHOW_FILM}${film.id}`}
-                  >
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s"></use>
-                    </svg>
-                    <span>Play</span>
-                  </Link>
+                <Link
+                  className="btn btn--play movie-card__button"
+                  to={`${Path.SHOW_FILM}${film.id}`}
+                >
+                  <svg viewBox="0 0 19 19" width="19" height="19">
+                    <use xlinkHref="#play-s"></use>
+                  </svg>
+                  <span>Play</span>
+                </Link>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
