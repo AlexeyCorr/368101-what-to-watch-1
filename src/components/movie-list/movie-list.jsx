@@ -25,7 +25,7 @@ class MovieList extends PureComponent {
     return (
       <React.Fragment>
         <div className="catalog__movies-list">
-          {films.slice(0, showFilms).map((film, i) =>
+          {[...films].slice(0, showFilms).map((film, i) =>
             <MovieCard
               key={`movie-card-${i}`}
               film={film}
