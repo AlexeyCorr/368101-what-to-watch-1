@@ -25,6 +25,7 @@ const MovieCard = (props) => {
         isPlaying={isPlaying}
         picture={previewImage}
         src={previewVideoLink}
+        muted={true}
       />
       <h3 className="small-movie-card__title">
         <Link

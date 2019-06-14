@@ -3,7 +3,6 @@
 exports[`renders correctly 1`] = `
 <video
   className="player__video"
-  muted={true}
   poster="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
 >
   <source

@@ -2,6 +2,9 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
+import {Link} from 'react-router-dom';
+import Path from './../../paths.js';
+
 import {ActionCreator} from './../../reducer/data/data.js';
 import {getGenres, getFilteredArray, getPromoFilm} from './../../reducer/data/selectors.js';
 import {getUser} from './../../reducer/user/selectors.js';
@@ -15,6 +18,7 @@ import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
 const WithActiveGenre = withActiveItem(GenreList);
 
 class MainScreen extends PureComponent {
+
   render() {
     const {
       films,
@@ -52,14 +56,17 @@ class MainScreen extends PureComponent {
                 </p>
 
                 <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button">
+                  <Link
+                    className="btn btn--play movie-card__button"
+                    to={`${Path.SHOW_FILM}${promoFilm.id}`}
+                  >
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
                     </svg>
                     <span>Play</span>
-                  </button>
+                  </Link>
                   <button className="btn btn--list movie-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
+                    <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#add"></use>
                     </svg>
                     <span>My list</span>
@@ -83,13 +90,11 @@ class MainScreen extends PureComponent {
               films={films}
             />
 
-            {/* <div className="catalog__more">
-              <button className="catalog__button" type="button">Show more</button>
-            </div> */}
           </section>
 
           <Footer/>
         </div>
+
       </React.Fragment>
     );
   }
