@@ -1,7 +1,13 @@
+import camelcaseKeys from 'camelcase-keys';
+
 const initialState = {
-  isAuthorizationRequired: false,
   user: {},
   error: undefined,
+};
+
+const ActionType = {
+  LOG_IN: `LOG_IN`,
+  LOG_ERROR: `LOG_ERROR`,
 };
 
 const Operation = {
@@ -10,37 +16,25 @@ const Operation = {
       email,
       password
     }).then((response) => {
-      dispatch(ActionCreator.logIn(response.data));
-      dispatch(ActionCreator.requireAuthorization(true));
+      const data = camelcaseKeys(response.data);
+
+      dispatch(ActionCreator.logIn(data));
     }).catch((error) => {
-      dispatch(ActionCreator.logOut(error.message));
+      dispatch(ActionCreator.logError(error.message));
     });
   }
-}
-
-
-const ActionType = {
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  LOG_IN: `LOG_IN`,
-  LOG_OUT: `LOG_OUT`,
 };
 
 const ActionCreator = {
-  requireAuthorization: (status) => {
-    return {
-      type: ActionType.REQUIRED_AUTHORIZATION,
-      payload: status,
-    };
-  },
   logIn: (user) => {
     return {
       type: ActionType.LOG_IN,
       payload: user,
     };
   },
-  logOut: (error) => {
+  logError: (error) => {
     return {
-      type: ActionType.LOG_OUT,
+      type: ActionType.LOG_ERROR,
       payload: error,
     };
   },
@@ -48,19 +42,16 @@ const ActionCreator = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.REQUIRED_AUTHORIZATION:
-      return Object.assign({}, state, {
-        isAuthorizationRequired: action.payload,
-      });
-
     case ActionType.LOG_IN:
       return Object.assign({}, state, {
+        ...state,
         user: action.payload,
         error: undefined,
       });
 
-    case ActionType.LOG_OUT:
+    case ActionType.LOG_ERROR:
       return Object.assign({}, state, {
+        ...state,
         error: action.payload,
       });
 

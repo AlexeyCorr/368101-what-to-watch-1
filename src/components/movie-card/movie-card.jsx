@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
+import Path from './../../paths.js';
 import VideoPlayer from './../video-player/video-player.jsx';
 
 const MovieCard = (props) => {
@@ -8,11 +10,10 @@ const MovieCard = (props) => {
     film,
     mouseEnterHandler,
     mouseLeaveHandler,
-    clickHandler,
     isPlaying,
   } = props;
 
-  const {title, videoLink, previewImage, previewLink} = film;
+  const {name, previewImage, previewVideoLink, id} = film;
 
   return (
     <article
@@ -23,19 +24,16 @@ const MovieCard = (props) => {
       <VideoPlayer
         isPlaying={isPlaying}
         picture={previewImage}
-        src={previewLink}
+        src={previewVideoLink}
+        muted={true}
       />
       <h3 className="small-movie-card__title">
-        <a
+        <Link
           className="small-movie-card__link"
-          href={videoLink}
-          onClick={(evt) => {
-            evt.preventDefault();
-            clickHandler(film.title);
-          }}
+          to={`${Path.FILM}${id}`}
         >
-          {title}
-        </a>
+          {name}
+        </Link>
       </h3>
     </article>
   );
@@ -46,7 +44,6 @@ MovieCard.propTypes = {
   mouseEnterHandler: PropTypes.func.isRequired,
   mouseLeaveHandler: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
-  clickHandler: PropTypes.func,
 };
 
 export default MovieCard;

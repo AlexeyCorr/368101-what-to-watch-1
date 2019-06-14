@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="user-page"
+>
+  <header
+    className="page-header user-page__head"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link logo__link--undefined"
+        href="/"
+        onClick={[Function]}
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <h1
+      className="page-title user-page__title"
+    >
+      My list
+    </h1>
+    <div
+      className="user-block"
+    >
+      <div
+        className="user-block__avatar"
+      >
+        <a
+          href="/favorites"
+          onClick={[Function]}
+        >
+          <img
+            alt="User avatar"
+            height="63"
+            src="https://es31-server.appspot.com/wtw/static/avatar/7.jpg"
+            width="63"
+          />
+        </a>
+      </div>
+    </div>
+  </header>
+  <section
+    className="catalog"
+  >
+    <h2
+      className="catalog__title visually-hidden"
+    >
+      Catalog
+    </h2>
+    <div
+      className="catalog__movies-list"
+    >
+      <article
+        className="small-movie-card catalog__movies-card"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
+        >
+          <source
+            src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <h3
+          className="small-movie-card__title"
+        >
+          <a
+            className="small-movie-card__link"
+            href="/film/1"
+            onClick={[Function]}
+          >
+            Snatch
+          </a>
+        </h3>
+      </article>
+      <article
+        className="small-movie-card catalog__movies-card"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://es31-server.appspot.com/wtw/static/film/preview/war-of-the-worlds.jpg"
+        >
+          <source
+            src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <h3
+          className="small-movie-card__title"
+        >
+          <a
+            className="small-movie-card__link"
+            href="/film/2"
+            onClick={[Function]}
+          >
+            War of the Worlds
+          </a>
+        </h3>
+      </article>
+    </div>
+    <div
+      className="catalog__more"
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    >
+      <button
+        className="catalog__button"
+        onClick={[Function]}
+        type="button"
+      >
+        Show more
+      </button>
+    </div>
+  </section>
+  <footer
+    className="page-footer"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link logo__link--light"
+        href="/"
+        onClick={[Function]}
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      className="copyright"
+    >
+      <p>
+        © 2019 What to watch Ltd.
+      </p>
+    </div>
+  </footer>
+</div>
+`;

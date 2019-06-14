@@ -1,10 +1,10 @@
-import MockAdapter from "axios-mock-adapter";
-import {createAPI} from "../../api";
+import MockAdapter from 'axios-mock-adapter';
+import {createAPI} from '../../api';
 import {
   ActionCreator,
   ActionType,
   Operation,
-} from "./data";
+} from './data.js';
 
 describe(`Reducer works correctly`, () => {
   it(`Returns the correct genre`, () => {

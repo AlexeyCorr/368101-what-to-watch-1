@@ -1,16 +1,18 @@
 import axios from 'axios';
-import {ActionCreator} from './reducer/user/user.js';
+
+import {BASE_URL} from './constants.js';
 
 export const createAPI = (onLoginFail) => {
   const api = axios.create({
-    baseURL: `https://es31-server.appspot.com/wtw`,
+    baseURL: `${BASE_URL}/wtw`,
     timeout: 5000,
     withCredentials: true,
   });
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    if (err.response.status === 403) {
+    
+    if (err.response.status !== 200) {
       onLoginFail();
     }
     return err;

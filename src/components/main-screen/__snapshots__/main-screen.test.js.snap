@@ -4,13 +4,18 @@ exports[`renders correctly 1`] = `
 Array [
   <section
     className="movie-card"
+    style={
+      Object {
+        "backgroundColor": "#9B7E61",
+      }
+    }
   >
     <div
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="War of the Worlds"
+        src="https://es31-server.appspot.com/wtw/static/film/background/War_of_the_Worlds.jpg"
       />
     </div>
     <h1
@@ -25,7 +30,9 @@ Array [
         className="logo"
       >
         <a
-          className="logo__link"
+          className="logo__link logo__link--undefined"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -44,15 +51,27 @@ Array [
           </span>
         </a>
       </div>
+      <h1
+        className="page-title user-page__title"
+      />
       <div
         className="user-block"
       >
-        <a
-          className="user-block__link"
-          href="sign-in.html"
+        <div
+          className="user-block__avatar"
         >
-          Sign in
-        </a>
+          <a
+            href="/favorites"
+            onClick={[Function]}
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="https://es31-server.appspot.com/wtw/static/avatar/7.jpg"
+              width="63"
+            />
+          </a>
+        </div>
       </div>
     </header>
     <div
@@ -65,9 +84,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="War of the Worlds poster"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://es31-server.appspot.com/wtw/static/film/poster/War_of_the_Worlds.jpg"
             width="218"
           />
         </div>
@@ -77,7 +96,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            The Grand Budapest Hotel
+            War of the Worlds
           </h2>
           <p
             className="movie-card__meta"
@@ -85,20 +104,21 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Drama
+              Adventure
             </span>
             <span
               className="movie-card__year"
             >
-              2014
+              2005
             </span>
           </p>
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
-              type="button"
+              href="/show-film/2"
+              onClick={[Function]}
             >
               <svg
                 height="19"
@@ -112,14 +132,14 @@ Array [
               <span>
                 Play
               </span>
-            </button>
+            </a>
             <button
               className="btn btn--list movie-card__button"
               type="button"
             >
               <svg
-                height="20"
-                viewBox="0 0 19 20"
+                height="19"
+                viewBox="0 0 19 19"
                 width="19"
               >
                 <use
@@ -161,6 +181,17 @@ Array [
           </a>
         </li>
         <li
+          className="catalog__genres-item catalog__genres-item--active"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            All genres
+          </a>
+        </li>
+        <li
           className="catalog__genres-item "
         >
           <a
@@ -168,7 +199,73 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Romance
+            Comedy
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Adventure
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Crime
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Thriller
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Drama
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Action
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Fantasy
           </a>
         </li>
       </ul>
@@ -183,11 +280,11 @@ Array [
           <video
             className="player__video"
             muted={true}
-            poster="img/bohemian-rhapsody.jpg"
+            poster="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
           >
             <source
-              src="1.webm"
-              type="video/webm"
+              src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+              type="video/mp4"
             />
           </video>
           <h3
@@ -195,19 +292,52 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/film/1"
               onClick={[Function]}
             >
-              Bohemian Rhapsody
+              Snatch
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <video
+            className="player__video"
+            muted={true}
+            poster="https://es31-server.appspot.com/wtw/static/film/preview/war-of-the-worlds.jpg"
+          >
+            <source
+              src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="/film/2"
+              onClick={[Function]}
+            >
+              War of the Worlds
             </a>
           </h3>
         </article>
       </div>
       <div
         className="catalog__more"
+        style={
+          Object {
+            "display": "none",
+          }
+        }
       >
         <button
           className="catalog__button"
+          onClick={[Function]}
           type="button"
         >
           Show more
@@ -222,6 +352,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"

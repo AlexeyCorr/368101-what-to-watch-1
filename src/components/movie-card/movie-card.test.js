@@ -1,32 +1,23 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {StaticRouter} from 'react-router'
 
+import {films} from './../../mocks/films.js';
 import MovieCard from './movie-card.jsx';
 
-const mock =  {
-  film: {
-    genre: `Romance`,
-    previewImage: `img/bohemian-rhapsody.jpg`,
-    title: `Bohemian Rhapsody`,
-    videoLink: `movie-page.html`,
-    previewLink: `1.webm`,
-  },
-  isPlaying: false
-};
-
 it(`renders correctly`, () => {
-  const {film, isPlaying} = mock;
   const mouseEnterHandler = jest.fn();
   const mouseLeaveHandler = jest.fn();
-  const clickHandler = jest.fn();
+  const clickFilmHandler = jest.fn();
   const tree = renderer
-    .create(<MovieCard
-      film={film}
-      mouseEnterHandler={mouseEnterHandler}
-      mouseLeaveHandler={mouseLeaveHandler}
-      clickHandler={clickHandler}
-      isPlaying={isPlaying}
-    />)
-    .toJSON();
+    .create(<StaticRouter>
+      <MovieCard
+        film={films[0]}
+        mouseEnterHandler={mouseEnterHandler}
+        mouseLeaveHandler={mouseLeaveHandler}
+        clickFilmHandler={clickFilmHandler}
+        isPlaying={true}
+      />
+    </StaticRouter>).toJSON();
   expect(tree).toMatchSnapshot();
 });

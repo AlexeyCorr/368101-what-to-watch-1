@@ -2,8 +2,12 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {getUser} from './../../reducer/user/selectors.js';
-import {Operation} from './../../reducer/user/user.js';
+import {getUser, getError} from './../../reducer/user/selectors.js';
+import {Operation, ActionCreator} from './../../reducer/user/user.js';
+import Path from './../../paths.js';
+
+import Header from './../header/header.jsx';
+import Footer from './../footer/footer.jsx';
 
 class SingInScreen extends PureComponent {
   constructor(props) {
@@ -20,19 +24,12 @@ class SingInScreen extends PureComponent {
   }
 
   render() {
+    const {user, error} = this.props;
+
     return (
       <div className="user-page">
-        <header className="page-header user-page__head">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
 
-          <h1 className="page-title user-page__title">Sign in</h1>
-        </header>
+        <Header className={`user-page__head`} title={`Sign in`} user={user}/>
 
         <div className="sign-in user-page__content">
           <form
@@ -40,8 +37,11 @@ class SingInScreen extends PureComponent {
             className="sign-in__form"
             onSubmit={this._onSubmit}
           >
+            <div className="sign-in__message">
+              <p>{error}</p>
+            </div>
             <div className="sign-in__fields">
-              <div className="sign-in__field">
+              <div className={`sign-in__field ${error ? `sign-in__field--error` : ``}`}>
                 <input
                   className="sign-in__input"
                   type="email"
@@ -67,38 +67,43 @@ class SingInScreen extends PureComponent {
               </div>
             </div>
             <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit">Sign in</button>
+              <button
+                className="sign-in__btn"
+                type="submit"
+              >Sign in</button>
             </div>
           </form>
         </div>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     );
   }
 
+  componentDidMount() {
+    const {user, history} = this.props;
+
+    if (user.id) {
+      history.push(Path.MAIN);
+    }
+  }
+
   _onSubmit(evt) {
-    const {logIn} = this.props;
+    const {logIn, logError, history} = this.props;
     const {email, password} = this.state;
 
     evt.preventDefault();
 
     if (email && password) {
-      logIn(email, password);
+      logIn(email, password).then(() => {
+        if (history.length > 1) {
+          history.goBack();
+        } else {
+          history.push(Path.MAIN);
+        }
+      });
     } else {
-      throw new Error(`Введите email и пароль`);
+      logError(`Fields email and password is required.`);
     }
   }
 
@@ -126,16 +131,19 @@ class SingInScreen extends PureComponent {
 SingInScreen.propTypes = {
   user: PropTypes.object,
   logIn: PropTypes.func.isRequired,
+  history: PropTypes.object,
+  logError: PropTypes.func,
+  error: PropTypes.string,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   user: getUser(state),
+  error: getError(state),
 });
 
 const mapDispachToProps = (dispatch) => ({
-  logIn: (email, password) => {
-    dispatch(Operation.logIn(email, password));
-  },
+  logIn: (email, password) => dispatch(Operation.logIn(email, password)),
+  logError: (error) => dispatch(ActionCreator.logError(error)),
 });
 
 export {SingInScreen};

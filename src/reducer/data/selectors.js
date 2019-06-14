@@ -7,6 +7,14 @@ export const getFilms = (state) => {
   return state[NAME_SPACE].films;
 };
 
+export const getPromoFilm = (state) => {
+  return state[NAME_SPACE].promoFilm;
+};
+
+export const getComments = (state) => {
+  return state[NAME_SPACE].comments;
+};
+
 export const getGenres = (state) => {
   return state[NAME_SPACE].films.map((it) => it.genre);
 };

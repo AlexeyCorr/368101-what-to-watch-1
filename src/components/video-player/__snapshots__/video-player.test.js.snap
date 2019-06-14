@@ -3,11 +3,10 @@
 exports[`renders correctly 1`] = `
 <video
   className="player__video"
-  muted={true}
-  poster="img/bohemian-rhapsody.jpg"
+  poster="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
 >
   <source
-    src="2.mp4"
+    src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
     type="video/mp4"
   />
 </video>
