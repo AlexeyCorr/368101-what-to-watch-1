@@ -21,20 +21,20 @@ const MovieCard = (props) => {
       onMouseEnter={mouseEnterHandler}
       onMouseLeave={mouseLeaveHandler}
     >
-      <VideoPlayer
-        isPlaying={isPlaying}
-        picture={previewImage}
-        src={previewVideoLink}
-        muted={true}
-      />
-      <h3 className="small-movie-card__title">
-        <Link
-          className="small-movie-card__link"
-          to={`${Path.FILM}${id}`}
-        >
+      <Link
+        className="small-movie-card__link"
+        to={Path.FILM(id)}
+      >
+        <VideoPlayer
+          isPlaying={isPlaying}
+          picture={previewImage}
+          src={previewVideoLink}
+          muted={true}
+        />
+        <h3 className="small-movie-card__title">
           {name}
-        </Link>
-      </h3>
+        </h3>
+      </Link>
     </article>
   );
 };

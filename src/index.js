@@ -10,10 +10,11 @@ import Path from './paths.js';
 import {createAPI} from './api';
 import reducer from './reducer/index.js';
 import {Operation} from './reducer/data/data.js';
+import {Operation as OperationU} from './reducer/user/user.js';
 import App from './components/app/app.jsx';
 
 const init = () => {
-  const api = createAPI(() => history.pushState(null, null, Path.LOGIN));
+  const api = createAPI();
 
   const store = createStore(
     reducer,
@@ -24,6 +25,7 @@ const init = () => {
 
   store.dispatch(Operation.loadFilms());
   store.dispatch(Operation.loadPromoFilm());
+  store.dispatch(OperationU.getUser());
 
   ReactDOM.render(
     <Provider store={store}>

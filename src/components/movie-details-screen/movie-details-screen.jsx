@@ -50,20 +50,30 @@ const MovieDetailsScreen = (props) => {
               <div className="movie-card__buttons">
                 <Link
                   className="btn btn--play movie-card__button"
-                  to={`${Path.SHOW_FILM}${film.id}`}
+                  to={Path.SHOW_FILM(film.id)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button
+                  className="btn btn--list movie-card__button"
+                  type="button"
+                  style={{display: `${user.id ? `block` : `none`}`}}
+                >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link
+                  style={{display: `${user.id ? `block` : `none`}`}}
+                  to={Path.REVIEW(film.id)}
+                  className="btn movie-card__button"
+                >
+                  Add review
+                </Link>
               </div>
             </div>
           </div>

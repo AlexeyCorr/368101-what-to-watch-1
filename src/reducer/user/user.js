@@ -11,6 +11,19 @@ const ActionType = {
 };
 
 const Operation = {
+  getUser: () => {
+    return (dispatch, _getState, api) => {
+      return api.get(`/login`)
+        .then((response) => {
+          const data = camelcaseKeys(response.data);
+
+          dispatch(ActionCreator.logIn(data));
+        }).catch((error) => {
+          dispatch(ActionCreator.logError(error.message));
+        });
+    };
+  },
+
   logIn: (email, password) => (dispatch, _getState, api) => {
     return api.post(`/login`, {
       email,
