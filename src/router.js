@@ -7,14 +7,16 @@ import SingInScreen from './components/sing-in-screen/sing-in-screen.jsx';
 import FavoritesScreen from './components/favorites-screen/favorites-screen.jsx';
 import MovieDetailsScreen from './components/movie-details-screen/movie-details-screen.jsx';
 import MovieScreen from './components/movie-screen/movie-screen.jsx';
+import ReviewScreen from './components/review-screen/review-screen.jsx';
 
 const Router = () => (
   <Switch>
-    <Route path={Path.MAIN} exact component={MainScreen}/>
-    <Route path={Path.LOGIN} component={SingInScreen}/>
-    <Route path={Path.FAVORITES} component={FavoritesScreen}/>
-    <Route path={`${Path.FILM}:id`} component={MovieDetailsScreen}/>
-    <Route path={`${Path.SHOW_FILM}:id`} component={MovieScreen}/>
+    <Route path={Path.main()} exact component={MainScreen}/>
+    <Route path={Path.login()} component={SingInScreen}/>
+    <Route path={Path.favorites()} component={FavoritesScreen}/>
+    <Route path={Path.film(`:id`)} component={MovieDetailsScreen}/>
+    <Route path={Path.showFilm(`:id`)} component={MovieScreen}/>
+    <Route path={Path.review(`:id`)} component={ReviewScreen}/>
   </Switch>
 );
 

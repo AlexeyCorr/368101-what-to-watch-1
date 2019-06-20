@@ -10,54 +10,54 @@ Array [
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
+      <a
+        className="small-movie-card__link"
+        href="/film/1"
+        onClick={[Function]}
       >
-        <source
-          src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-          type="video/mp4"
-        />
-      </video>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="/film/1"
-          onClick={[Function]}
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
+        >
+          <source
+            src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <h3
+          className="small-movie-card__title"
         >
           Snatch
-        </a>
-      </h3>
+        </h3>
+      </a>
     </article>
     <article
       className="small-movie-card catalog__movies-card"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://es31-server.appspot.com/wtw/static/film/preview/war-of-the-worlds.jpg"
+      <a
+        className="small-movie-card__link"
+        href="/film/2"
+        onClick={[Function]}
       >
-        <source
-          src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-          type="video/mp4"
-        />
-      </video>
-      <h3
-        className="small-movie-card__title"
-      >
-        <a
-          className="small-movie-card__link"
-          href="/film/2"
-          onClick={[Function]}
+        <video
+          className="player__video"
+          muted={true}
+          poster="https://es31-server.appspot.com/wtw/static/film/preview/war-of-the-worlds.jpg"
+        >
+          <source
+            src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <h3
+          className="small-movie-card__title"
         >
           War of the Worlds
-        </a>
-      </h3>
+        </h3>
+      </a>
     </article>
   </div>,
   <div

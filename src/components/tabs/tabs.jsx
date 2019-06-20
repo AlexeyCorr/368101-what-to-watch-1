@@ -7,15 +7,15 @@ import Overview from './overview/overview.jsx';
 
 const DEFAULT_TAB = `Overview`;
 
-const Tabs = ({film, activeItem, clickHandler}) => {
-  const showTab = (activeTab, data) => {
+const Tabs = ({film, comments, activeItem, clickHandler}) => {
+  const showTab = (activeTab) => {
     switch (activeTab) {
       case `Overview`:
-        return <Overview film={data}/>;
+        return <Overview film={film}/>;
       case `Details`:
-        return <Details film={data}/>;
+        return <Details film={film}/>;
       case `Reviews`:
-        return <Reviews film={data}/>;
+        return <Reviews comments={comments}/>;
     }
     return `Choose tab is not defined`;
   };
@@ -43,7 +43,7 @@ const Tabs = ({film, activeItem, clickHandler}) => {
         </ul>
       </nav>
 
-      {showTab(activeItem, film)}
+      {showTab(activeItem)}
 
     </div>
   );
@@ -57,6 +57,7 @@ Tabs.propTypes = {
   film: PropTypes.object.isRequired,
   activeItem: PropTypes.string,
   clickHandler: PropTypes.func,
+  comments: PropTypes.array.isRequired,
 };
 
 export default Tabs;

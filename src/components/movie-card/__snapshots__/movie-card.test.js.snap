@@ -6,26 +6,26 @@ exports[`renders correctly 1`] = `
   onMouseEnter={[MockFunction]}
   onMouseLeave={[MockFunction]}
 >
-  <video
-    className="player__video"
-    muted={true}
-    poster="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
+  <a
+    className="small-movie-card__link"
+    href="/film/1"
+    onClick={[Function]}
   >
-    <source
-      src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-      type="video/mp4"
-    />
-  </video>
-  <h3
-    className="small-movie-card__title"
-  >
-    <a
-      className="small-movie-card__link"
-      href="/film/1"
-      onClick={[Function]}
+    <video
+      className="player__video"
+      muted={true}
+      poster="https://es31-server.appspot.com/wtw/static/film/preview/snatch.jpg"
+    >
+      <source
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+        type="video/mp4"
+      />
+    </video>
+    <h3
+      className="small-movie-card__title"
     >
       Snatch
-    </a>
-  </h3>
+    </h3>
+  </a>
 </article>
 `;

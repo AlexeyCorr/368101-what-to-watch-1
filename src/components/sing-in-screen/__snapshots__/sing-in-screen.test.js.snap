@@ -74,20 +74,20 @@ exports[`renders correctly 1`] = `
         className="sign-in__fields"
       >
         <div
-          className="sign-in__field "
+          className="sign-in__field"
         >
           <input
-            autoComplete="username email"
             className="sign-in__input"
-            id="user-email"
-            name="user-email"
+            id="email"
+            name="email"
             onChange={[Function]}
             placeholder="Email address"
             type="email"
+            value=""
           />
           <label
             className="sign-in__label visually-hidden"
-            htmlFor="user-email"
+            htmlFor="email"
           >
             Email address
           </label>
@@ -96,17 +96,17 @@ exports[`renders correctly 1`] = `
           className="sign-in__field"
         >
           <input
-            autoComplete="current-password"
             className="sign-in__input"
-            id="user-password"
-            name="user-password"
+            id="password"
+            name="password"
             onChange={[Function]}
             placeholder="Password"
             type="password"
+            value=""
           />
           <label
             className="sign-in__label visually-hidden"
-            htmlFor="user-password"
+            htmlFor="password"
           >
             Password
           </label>
@@ -117,6 +117,7 @@ exports[`renders correctly 1`] = `
       >
         <button
           className="sign-in__btn"
+          disabled={true}
           type="submit"
         >
           Sign in

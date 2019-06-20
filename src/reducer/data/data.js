@@ -3,7 +3,8 @@ import camelcaseKeys from 'camelcase-keys';
 const initialState = {
   genre: `All genres`,
   films: [],
-  comments: [],
+  favotites: [],
+  comments: {},
   promoFilm: {},
 };
 
@@ -38,9 +39,20 @@ const Operation = {
       .then((response) => {
         const data = camelcaseKeys(response.data);
 
-        dispatch(ActionCreator.loadComments(data));
+        dispatch(ActionCreator.loadComments(id, data));
       });
-  }
+  },
+
+  addReview: (id, rating, comment) => (dispatch, _getState, api) => {
+    return api.post(`/comments/${id}`, {
+      rating: typeof rating === `string` ? parseInt(rating, 10) : rating,
+      comment: comment,
+    }).then((response) => {
+      const data = camelcaseKeys(response.data);
+
+      dispatch(ActionCreator.loadComments(id, data));
+    });
+  },
 };
 
 const ActionCreator = {
@@ -58,10 +70,10 @@ const ActionCreator = {
     };
   },
 
-  loadComments: (comments) => {
+  loadComments: (id, comments) => {
     return {
       type: ActionType.LOAD_COMMENTS,
-      payload: comments,
+      payload: {id, comments},
     };
   },
 
@@ -85,14 +97,16 @@ const reducer = (state = initialState, action) => {
         promoFilm: action.payload,
       });
 
-    case ActionType.LOAD_COMMENTS:
-      return Object.assign({}, state, {
-        comments: action.payload,
-      });
-
     case ActionType.GET_GENRE:
       return Object.assign({}, state, {
         genre: action.payload,
+      });
+
+    case ActionType.LOAD_COMMENTS:
+      return Object.assign({}, state, {
+        comments: {
+          [action.payload.id]: action.payload.comments,
+        }
       });
   }
 

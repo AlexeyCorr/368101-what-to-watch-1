@@ -17,7 +17,7 @@ const withAuthorization = (Component) => {
       const {user, history} = this.props;
 
       if (!user.id) {
-        history.push(Path.LOGIN);
+        history.push(Path.login());
       }
     }
   }

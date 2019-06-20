@@ -1,9 +1,10 @@
 const Path = {
-  MAIN: `/`,
-  LOGIN: `/login`,
-  FAVORITES: `/favorites`,
-  FILM: `/film/`,
-  SHOW_FILM: `/show-film/`,
+  main: () => `/`,
+  login: () => `/login`,
+  favorites: () => `/favorites`,
+  film: (id) => `/film/${id}`,
+  showFilm: (id) => `/film-play/${id}`,
+  review: (id) => `/film-review/${id}`,
 };
 
 export default Path;

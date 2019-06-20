@@ -16,5 +16,5 @@ it(`check redirect to the login page if there is no user`, () => {
   shallow(<ComponentWrapped user={{}} history={history}/>);
 
   expect(history.push).toHaveBeenCalledTimes(1);
-  expect(history.push).toHaveBeenCalledWith(Path.LOGIN);
+  expect(history.push).toHaveBeenCalledWith(Path.login());
 });

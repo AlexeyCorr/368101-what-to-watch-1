@@ -8,6 +8,8 @@ import {match} from './../../mocks/match.js';
 import {MovieDetailsScreen} from './movie-details-screen.jsx';
 
 it(`renders correctly`, () => {
+  const loadComments = jest.fn();
+
   const tree = renderer
   .create(
     <StaticRouter>
@@ -16,6 +18,7 @@ it(`renders correctly`, () => {
         user={user}
         films={films}
         film={films[0]}
+        loadComments={loadComments}
       />
     </StaticRouter>
   ).toJSON();
