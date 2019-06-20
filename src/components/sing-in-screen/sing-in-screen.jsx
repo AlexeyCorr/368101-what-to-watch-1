@@ -8,23 +8,21 @@ import Path from './../../paths.js';
 
 import Header from './../header/header.jsx';
 import Footer from './../footer/footer.jsx';
+import withFormData from './../../hocs/with-form-data/with-form-data.jsx';
+
+const EMAIL_FIELD_NAME = `email`;
+const PASSWORD_FIELD_NAME = `password`;
 
 class SingInScreen extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      email: undefined,
-      password: undefined,
-    };
-
-    this._onSubmit = this._onSubmit.bind(this);
-    this._onChengeEmailInput = this._onChengeEmailInput.bind(this);
-    this._onChengePasswordInput = this._onChengePasswordInput.bind(this);
+    this._submitHandler = this._submitHandler.bind(this);
+    this._changeHandler = this._changeHandler.bind(this);
   }
 
   render() {
-    const {user, error} = this.props;
+    const {user, error, form} = this.props;
 
     return (
       <div className="user-page">
@@ -35,41 +33,23 @@ class SingInScreen extends PureComponent {
           <form
             action="#"
             className="sign-in__form"
-            onSubmit={this._onSubmit}
+            onSubmit={this._submitHandler}
           >
             <div className="sign-in__message">
               <p>{error}</p>
             </div>
             <div className="sign-in__fields">
-              <div className={`sign-in__field ${error ? `sign-in__field--error` : ``}`}>
-                <input
-                  className="sign-in__input"
-                  type="email"
-                  autoComplete="username email"
-                  placeholder="Email address"
-                  name="user-email"
-                  id="user-email"
-                  onChange={this._onChengeEmailInput}
-                />
-                <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
-              </div>
-              <div className="sign-in__field">
-                <input
-                  className="sign-in__input"
-                  type="password"
-                  placeholder="Password"
-                  name="user-password"
-                  id="user-password"
-                  autoComplete="current-password"
-                  onChange={this._onChengePasswordInput}
-                />
-                <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
-              </div>
+
+              {this._renderField(EMAIL_FIELD_NAME, `Email address`)}
+
+              {this._renderField(PASSWORD_FIELD_NAME, `Password`)}
+
             </div>
             <div className="sign-in__submit">
               <button
                 className="sign-in__btn"
                 type="submit"
+                disabled={!form.email || !form.password}
               >Sign in</button>
             </div>
           </form>
@@ -80,17 +60,43 @@ class SingInScreen extends PureComponent {
     );
   }
 
-  componentDidMount() {
-    const {user, history} = this.props;
+  _renderField(name, desc) {
+    const {form} = this.props;
+    const value = form[name] || ``;
 
-    if (user.id) {
-      history.push(Path.MAIN);
+    return (
+      <div className="sign-in__field">
+        <input
+          className="sign-in__input"
+          type={name}
+          placeholder={desc}
+          name={name}
+          id={name}
+          value={value}
+          onChange={this._changeHandler}
+        />
+        <label
+          className="sign-in__label visually-hidden"
+          htmlFor={name}
+        >
+          {desc}
+        </label>
+      </div>
+    );
+  }
+
+  _changeHandler(evt) {
+    const {setValue} = this.props;
+    const target = evt.target;
+
+    if (target) {
+      setValue(target.name, target.value);
     }
   }
 
-  _onSubmit(evt) {
-    const {logIn, logError, history} = this.props;
-    const {email, password} = this.state;
+  _submitHandler(evt) {
+    const {logIn, logError, history, form} = this.props;
+    const {email, password} = form;
 
     evt.preventDefault();
 
@@ -106,34 +112,16 @@ class SingInScreen extends PureComponent {
       logError(`Fields email and password is required.`);
     }
   }
-
-  _onChengeEmailInput(evt) {
-    const {target} = evt;
-
-    if (target) {
-      this.setState({
-        email: target.value
-      });
-    }
-  }
-
-  _onChengePasswordInput(evt) {
-    const {target} = evt;
-
-    if (target) {
-      this.setState({
-        password: target.value
-      });
-    }
-  }
 }
 
 SingInScreen.propTypes = {
   user: PropTypes.object,
   logIn: PropTypes.func.isRequired,
-  history: PropTypes.object,
+  history: PropTypes.object.isRequired,
   logError: PropTypes.func,
   error: PropTypes.string,
+  form: PropTypes.object.isRequired,
+  setValue: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -146,6 +134,8 @@ const mapDispachToProps = (dispatch) => ({
   logError: (error) => dispatch(ActionCreator.logError(error)),
 });
 
+const WithFormSingIn = withFormData(SingInScreen);
+
 export {SingInScreen};
 
-export default connect(mapStateToProps, mapDispachToProps)(SingInScreen);
+export default connect(mapStateToProps, mapDispachToProps)(WithFormSingIn);

@@ -23,13 +23,14 @@ const Overview = ({film}) => {
       return RatingType.BAD;
     }
   };
+
   return (
     <React.Fragment>
       <div className="movie-rating">
         <div className="movie-rating__score">{film.rating}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{getRating(film.rating)}</span>
-          <span className="movie-rating__count">240 ratings</span>
+          <span className="movie-rating__count">{`${film.scoresCount} ratings`}</span>
         </p>
       </div>
 

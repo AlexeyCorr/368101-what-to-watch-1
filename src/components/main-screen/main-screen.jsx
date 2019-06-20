@@ -58,7 +58,7 @@ class MainScreen extends PureComponent {
                 <div className="movie-card__buttons">
                   <Link
                     className="btn btn--play movie-card__button"
-                    to={Path.SHOW_FILM(promoFilm.id)}
+                    to={Path.showFilm(promoFilm.id)}
                   >
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>

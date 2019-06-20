@@ -23,7 +23,7 @@ const MovieCard = (props) => {
     >
       <Link
         className="small-movie-card__link"
-        to={Path.FILM(id)}
+        to={Path.film(id)}
       >
         <VideoPlayer
           isPlaying={isPlaying}

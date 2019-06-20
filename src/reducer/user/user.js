@@ -35,7 +35,7 @@ const Operation = {
     }).catch((error) => {
       dispatch(ActionCreator.logError(error.message));
     });
-  }
+  },
 };
 
 const ActionCreator = {

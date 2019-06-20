@@ -11,8 +11,9 @@ export const getPromoFilm = (state) => {
   return state[NAME_SPACE].promoFilm;
 };
 
-export const getComments = (state) => {
-  return state[NAME_SPACE].comments;
+export const getComments = (state, id) => {
+  const comments = state[NAME_SPACE].comments;
+  return comments[id];
 };
 
 export const getGenres = (state) => {

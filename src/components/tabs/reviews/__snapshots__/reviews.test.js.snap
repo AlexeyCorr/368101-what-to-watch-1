@@ -6,41 +6,7 @@ exports[`renders correctly 1`] = `
 >
   <div
     className="movie-card__reviews-col"
-  >
-    <div
-      className="review"
-    >
-      <blockquote
-        className="review__quote"
-      >
-        <p
-          className="review__text"
-        >
-          Text
-        </p>
-        <footer
-          className="review__details"
-        >
-          <cite
-            className="review__author"
-          >
-            Kate Muir
-          </cite>
-          <time
-            className="review__date"
-            dateTime="2016-12-24"
-          >
-            December 24, 2016
-          </time>
-        </footer>
-      </blockquote>
-      <div
-        className="review__rating"
-      >
-        8,9
-      </div>
-    </div>
-  </div>
+  />
   <div
     className="movie-card__reviews-col"
   >
@@ -53,7 +19,7 @@ exports[`renders correctly 1`] = `
         <p
           className="review__text"
         >
-          Text
+          qwerty
         </p>
         <footer
           className="review__details"
@@ -61,20 +27,20 @@ exports[`renders correctly 1`] = `
           <cite
             className="review__author"
           >
-            Kate Muir
+            name
           </cite>
           <time
             className="review__date"
-            dateTime="2016-12-24"
+            dateTime="Invalid Date"
           >
-            December 24, 2016
+            Invalid Date
           </time>
         </footer>
       </blockquote>
       <div
         className="review__rating"
       >
-        8,9
+        5
       </div>
     </div>
   </div>

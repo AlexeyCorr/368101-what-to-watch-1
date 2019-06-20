@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import Path from './../../paths.js';
@@ -9,7 +10,7 @@ const Breadcrumbs = ({film}) => {
       <ul className="breadcrumbs__list">
         <li className="breadcrumbs__item">
           <Link
-            to={Path.FILM(film.id)}
+            to={Path.film(film.id)}
             className="breadcrumbs__link"
           >
             {film.name}
@@ -21,6 +22,10 @@ const Breadcrumbs = ({film}) => {
       </ul>
     </nav>
   );
+};
+
+Breadcrumbs.propTypes = {
+  film: PropTypes.object.isRequired,
 };
 
 export default Breadcrumbs;

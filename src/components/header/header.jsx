@@ -17,10 +17,10 @@ const Header = ({className, title, breadcrumbs, user}) => {
 
       <div className="user-block">
         {user.id ? (<div className="user-block__avatar">
-          <Link to={Path.FAVORITES()}>
+          <Link to={Path.favorites()}>
             <img src={`${BASE_URL}${user.avatarUrl}`} alt="User avatar" width="63" height="63" />
           </Link></div>
-        ) : (<Link to={Path.LOGIN()} className="user-block__link">Sign in</Link>)}
+        ) : (<Link to={Path.login()} className="user-block__link">Sign in</Link>)}
       </div>
     </header>
   );
