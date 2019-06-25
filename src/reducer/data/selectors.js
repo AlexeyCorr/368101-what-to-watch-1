@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect';
-import NameSpace from './../name-spaces';
+import NameSpace from './../name-spaces.js';
 
 const NAME_SPACE = NameSpace.DATA;
 
@@ -22,6 +22,10 @@ export const getGenres = (state) => {
 
 export const getGenre = (state) => {
   return state[NAME_SPACE].genre;
+};
+
+export const getFavorites = (state) => {
+  return state[NAME_SPACE].favorites;
 };
 
 export const getFilteredArray = createSelector(

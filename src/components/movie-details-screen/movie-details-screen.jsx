@@ -2,9 +2,6 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {Link} from 'react-router-dom';
-import Path from './../../paths.js';
-
 import {Operation} from './../../reducer/data/data.js';
 import {getFilms, getComments} from './../../reducer/data/selectors.js';
 import {getUser} from './../../reducer/user/selectors.js';
@@ -14,13 +11,19 @@ import Header from './../header/header.jsx';
 import MovieList from './../movie-list/movie-list.jsx';
 import Tabs from './../tabs/tabs.jsx';
 import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
+import Buttons from './../buttons/buttons.jsx';
 
 const WithActiveTabs = withActiveItem(Tabs);
 
 class MovieDetailsScreen extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this._changeFavoriteHandler = this._changeFavoriteHandler.bind(this);
+  }
+
   render() {
     const {user, films, comments, match} = this.props;
-
     const film = films[match.params.id - 1];
 
     if (!film) {
@@ -48,34 +51,14 @@ class MovieDetailsScreen extends PureComponent {
                   <span className="movie-card__genre">{film.genre}</span>
                   <span className="movie-card__year">{film.released}</span>
                 </p>
-                <div className="movie-card__buttons">
-                  <Link
-                    className="btn btn--play movie-card__button"
-                    to={Path.showFilm(film.id)}
-                  >
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s"></use>
-                    </svg>
-                    <span>Play</span>
-                  </Link>
-                  <button
-                    className="btn btn--list movie-card__button"
-                    type="button"
-                    style={{display: `${user.id ? `block` : `none`}`}}
-                  >
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                    <span>My list</span>
-                  </button>
-                  <Link
-                    style={{display: `${user.id ? `block` : `none`}`}}
-                    to={Path.review(film.id)}
-                    className="btn movie-card__button"
-                  >
-                    Add review
-                  </Link>
-                </div>
+
+                <Buttons
+                  user={user}
+                  film={film}
+                  clickHandler={this._changeFavoriteHandler}
+                  isReview={true}
+                />
+
               </div>
             </div>
           </div>
@@ -97,9 +80,7 @@ class MovieDetailsScreen extends PureComponent {
             <MovieList films={films.filter((it) => it.genre === film.genre)}/>
 
           </section>
-
           <Footer/>
-
         </div>
       </React.Fragment>
     );
@@ -110,14 +91,29 @@ class MovieDetailsScreen extends PureComponent {
 
     Promise.all([loadComments(parseInt(match.params.id, 10))]);
   }
+
+  _changeFavoriteHandler() {
+    const {films, addFavotite, removeFavotite, match} = this.props;
+    const film = films[match.params.id - 1];
+
+    if (film) {
+      if (film.isFavorite) {
+        removeFavotite(film.id);
+      } else {
+        addFavotite(film.id);
+      }
+    }
+  }
 }
 
 MovieDetailsScreen.propTypes = {
   user: PropTypes.object,
-  films: PropTypes.array,
+  films: PropTypes.array.isRequired,
   loadComments: PropTypes.func,
   comments: PropTypes.array,
-  match: PropTypes.object,
+  match: PropTypes.object.isRequired,
+  addFavotite: PropTypes.func.isRequired,
+  removeFavotite: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -128,6 +124,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 
 const mapDispachToProps = (dispatch) => ({
   loadComments: (id) => dispatch(Operation.loadComments(id)),
+  addFavotite: (id) => dispatch(Operation.addFavotite(id)),
+  removeFavotite: (id) => dispatch(Operation.removeFavotite(id)),
 });
 
 export {MovieDetailsScreen};

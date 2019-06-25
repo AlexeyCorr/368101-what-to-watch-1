@@ -7,7 +7,7 @@ import {compose} from 'recompose';
 import {BrowserRouter} from 'react-router-dom';
 
 import {createAPI} from './api';
-import reducer from './reducer/index.js';
+import reducer from './reducer/reducer.js';
 import {Operation} from './reducer/data/data.js';
 import {Operation as OperationU} from './reducer/user/user.js';
 import App from './components/app/app.jsx';
