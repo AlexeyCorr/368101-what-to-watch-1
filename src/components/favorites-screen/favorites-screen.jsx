@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
@@ -6,37 +6,58 @@ import withAuthorization from './../../hocs/with-authorization/with-authorizatio
 import Footer from './../footer/footer.jsx';
 import Header from './../header/header.jsx';
 import MovieList from './../movie-list/movie-list.jsx';
-import {getFilms} from './../../reducer/data/selectors.js';
+import {Operation} from './../../reducer/data/data.js';
+import {getFavorites} from './../../reducer/data/selectors.js';
 
-const FavoritesScreen = ({films, user}) => {
-  return (
-    <div className="user-page">
+class FavoritesScreen extends PureComponent {
+  render() {
+    const {user, favorites} = this.props;
 
-      <Header className={`user-page__head`} title={`My list`} user={user}/>
+    return (
+      <div className="user-page">
 
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
+        <Header className={`user-page__head`} title={`My list`} user={user}/>
 
-        <MovieList
-          films={films}
-        />
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-      </section>
+          {favorites ? (
+            <MovieList
+              films={favorites}
+            />
+          ) : (
+            <h3>{`You haven't added any movies to your favorites list.`}</h3>
+          )}
 
-      <Footer/>
-    </div>
-  );
-};
+
+        </section>
+
+        <Footer/>
+      </div>
+    );
+  }
+
+  componentDidMount() {
+    const {loadFavorites} = this.props;
+
+    loadFavorites();
+  }
+}
 
 FavoritesScreen.propTypes = {
   user: PropTypes.object.isRequired,
-  films: PropTypes.array.isRequired,
+  favorites: PropTypes.array,
+  loadFavorites: PropTypes.func,
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  favorites: getFavorites(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadFavorites: () => dispatch(Operation.loadFavorites()),
+});
 
 export {FavoritesScreen};
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  films: getFilms(state),
-});
-
-export default connect(mapStateToProps)(withAuthorization(FavoritesScreen));
+export default connect(mapStateToProps, mapDispatchToProps)(withAuthorization(FavoritesScreen));

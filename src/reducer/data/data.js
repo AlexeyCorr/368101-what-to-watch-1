@@ -3,7 +3,7 @@ import camelcaseKeys from 'camelcase-keys';
 const initialState = {
   genre: `All genres`,
   films: [],
-  favotites: [],
+  favorites: [],
   comments: {},
   promoFilm: {},
 };
@@ -13,7 +13,11 @@ const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  UPDATE_FILM: `UPDATE_FILM`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
 };
+
+const updateFilm = (film, films) => films.map((it) => film.id === it.id ? film : it);
 
 const Operation = {
   loadFilms: () => (dispatch, _getState, api) => {
@@ -32,6 +36,33 @@ const Operation = {
 
         dispatch(ActionCreator.loadPromoFilm(data));
       });
+  },
+
+  loadFavorites: () => (dispatch, _getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        const data = camelcaseKeys(response.data);
+
+        dispatch(ActionCreator.loadFavorites(data));
+      });
+  },
+
+  addFavotite: (id) => (dispatch, _getState, api) => {
+    return api.post(`/favorite/${id}/1`)
+      .then((response) => {
+        const data = camelcaseKeys(response.data);
+
+        dispatch(ActionCreator.updateFilm(data));
+    });
+  },
+
+  removeFavotite: (id) => (dispatch, _getState, api) => {
+    return api.post(`/favorite/${id}/0`)
+    .then((response) => {
+      const data = camelcaseKeys(response.data);
+
+      dispatch(ActionCreator.updateFilm(data));
+  });
   },
 
   loadComments: (id) => (dispatch, _getState, api) => {
@@ -83,6 +114,20 @@ const ActionCreator = {
       payload: genre,
     };
   },
+
+  updateFilm: (film) => {
+    return {
+      type: ActionType.UPDATE_FILM,
+      payload: film,
+    };
+  },
+
+  loadFavorites: (favorites) => {
+    return {
+      type: ActionType.LOAD_FAVORITES,
+      payload: favorites,
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -107,6 +152,17 @@ const reducer = (state = initialState, action) => {
         comments: {
           [action.payload.id]: action.payload.comments,
         }
+      });
+
+    case ActionType.UPDATE_FILM:
+      return Object.assign({}, state, {
+        films: updateFilm(action.payload, state.films),
+        favorites: updateFilm(action.payload, state.favorites),
+      });
+
+    case ActionType.LOAD_FAVORITES:
+      return Object.assign({}, state, {
+        favorites: action.payload,
       });
   }
 

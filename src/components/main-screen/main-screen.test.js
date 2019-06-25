@@ -10,6 +10,8 @@ import {MainScreen} from './main-screen.jsx';
 it(`renders correctly`, () => {
   const clickFilterHandler = jest.fn();
   const clickMovieHandler = jest.fn();
+  const addFavotite = jest.fn();
+  const removeFavotite = jest.fn();
 
   const tree = renderer
     .create(
@@ -21,6 +23,8 @@ it(`renders correctly`, () => {
           user={user}
           clickFilterHandler={clickFilterHandler}
           clickMovieHandler={clickMovieHandler}
+          addFavotite={addFavotite}
+          removeFavotite={removeFavotite}
         />
       </StaticRouter>
     ).toJSON();

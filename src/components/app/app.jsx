@@ -1,5 +1,6 @@
 import React from 'react';
 
+import withUser from './../../hocs/with-user/with-user.jsx';
 import Router from './../../router.js';
 import Sprite from './../sprite/sprite.jsx';
 
@@ -12,4 +13,6 @@ const App = () => {
   );
 };
 
-export default App;
+export {App};
+
+export default withUser(App);

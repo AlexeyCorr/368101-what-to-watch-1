@@ -57,7 +57,7 @@ Tabs.propTypes = {
   film: PropTypes.object.isRequired,
   activeItem: PropTypes.string,
   clickHandler: PropTypes.func,
-  comments: PropTypes.array.isRequired,
+  comments: PropTypes.array,
 };
 
 export default Tabs;

@@ -9,6 +9,8 @@ import {MovieDetailsScreen} from './movie-details-screen.jsx';
 
 it(`renders correctly`, () => {
   const loadComments = jest.fn();
+  const addFavotite = jest.fn();
+  const removeFavotite = jest.fn();
 
   const tree = renderer
   .create(
@@ -19,6 +21,8 @@ it(`renders correctly`, () => {
         films={films}
         film={films[0]}
         loadComments={loadComments}
+        addFavotite={addFavotite}
+        removeFavotite={removeFavotite}
       />
     </StaticRouter>
   ).toJSON();

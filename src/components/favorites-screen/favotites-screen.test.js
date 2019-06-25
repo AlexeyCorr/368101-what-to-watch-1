@@ -7,10 +7,17 @@ import {films} from './../../mocks/films.js';
 import {FavoritesScreen} from './favorites-screen.jsx';
 
 it(`renders correctly`, () => {
+  const loadFavorites = jest.fn();
+
   const tree = renderer
   .create(
     <StaticRouter>
-      <FavoritesScreen user={user} films={films}/>
+      <FavoritesScreen
+        user={user}
+        films={films}
+        loadFavorites={loadFavorites}
+        favorites={films}
+      />
     </StaticRouter>
   ).toJSON();
   expect(tree).toMatchSnapshot();
