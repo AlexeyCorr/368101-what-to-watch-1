@@ -14,9 +14,9 @@ const Router = () => (
     <Route path={Path.main()} exact component={MainScreen}/>
     <Route path={Path.login()} component={SingInScreen}/>
     <Route path={Path.favorites()} component={FavoritesScreen}/>
-    <Route path={Path.film(`:id`)} component={MovieDetailsScreen}/>
     <Route path={Path.showFilm(`:id`)} component={MovieScreen}/>
     <Route path={Path.review(`:id`)} component={ReviewScreen}/>
+    <Route path={Path.film(`:id`)} component={MovieDetailsScreen}/>
   </Switch>
 );
 

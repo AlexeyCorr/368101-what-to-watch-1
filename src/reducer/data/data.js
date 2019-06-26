@@ -158,6 +158,7 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         films: updateFilm(action.payload, state.films),
         favorites: updateFilm(action.payload, state.favorites),
+        promoFilm: state.promoFilm ? updateFilm(action.payload, [state.promoFilm])[0] : state.promoFilm,
       });
 
     case ActionType.LOAD_FAVORITES:
