@@ -4,16 +4,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
 import {compose} from 'recompose';
-import {BrowserRouter} from 'react-router-dom';
+import {Router} from 'react-router-dom';
 
 import {createAPI} from './api';
 import reducer from './reducer/reducer.js';
 import {Operation} from './reducer/data/data.js';
-import {Operation as OperationU} from './reducer/user/user.js';
 import App from './components/app/app.jsx';
+import history from './history';
+import Path from './paths.js';
 
 const init = () => {
-  const api = createAPI();
+  const onError = () => {
+    console.log(1);
+    history.push(Path.login());
+  };
+
+  const api = createAPI(onError);
 
   const store = createStore(
     reducer,
@@ -24,13 +30,12 @@ const init = () => {
 
   store.dispatch(Operation.loadFilms());
   store.dispatch(Operation.loadPromoFilm());
-  store.dispatch(OperationU.getUser());
 
   ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter>
+      <Router history={history}>
         <App/>
-      </BrowserRouter>
+      </Router>
     </Provider>,
     document.querySelector(`#root`)
   );

@@ -19,7 +19,7 @@ const Operation = {
 
           dispatch(ActionCreator.logIn(data));
         }).catch((error) => {
-          dispatch(ActionCreator.logError(error.message));
+          dispatch(ActionCreator.logError(error.response.data.error));
         });
     };
   },
@@ -33,7 +33,7 @@ const Operation = {
 
       dispatch(ActionCreator.logIn(data));
     }).catch((error) => {
-      dispatch(ActionCreator.logError(error.message));
+      dispatch(ActionCreator.logError(error.response.data.error));
     });
   },
 };

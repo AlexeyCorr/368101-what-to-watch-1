@@ -14,17 +14,17 @@ it(`renders correctly`, () => {
 
   const tree = renderer
   .create(
-    <StaticRouter>
-      <MovieDetailsScreen
-        match={match}
-        user={user}
-        films={films}
-        film={films[0]}
-        loadComments={loadComments}
-        addFavotite={addFavotite}
-        removeFavotite={removeFavotite}
-      />
-    </StaticRouter>
+      <StaticRouter>
+        <MovieDetailsScreen
+          match={match}
+          user={user}
+          films={films}
+          film={films[0]}
+          loadComments={loadComments}
+          addFavotite={addFavotite}
+          removeFavotite={removeFavotite}
+        />
+      </StaticRouter>
   ).toJSON();
   expect(tree).toMatchSnapshot();
 });

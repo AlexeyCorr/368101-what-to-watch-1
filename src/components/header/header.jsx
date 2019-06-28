@@ -26,6 +26,12 @@ const Header = ({className, title, breadcrumbs, user}) => {
   );
 };
 
+Header.defaultProps = {
+  user: {
+    id: null,
+  },
+};
+
 Header.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,

@@ -14,6 +14,8 @@ import withFormData from './../../hocs/with-form-data/with-form-data.jsx';
 const RATINGS = [`1`, `2`, `3`, `4`, `5`];
 const RATING_NAME = `rating`;
 const TEXTAREA_NAME = `comment`;
+const MIN_LENGTH_TEXT = 50;
+const MAX_LENGTH_TEXT = 400;
 
 class ReviewScreen extends PureComponent {
   constructor(props) {
@@ -85,6 +87,8 @@ class ReviewScreen extends PureComponent {
         placeholder="Review text"
         value={textValue}
         onChange={this._changeHandler}
+        minLength={MIN_LENGTH_TEXT}
+        maxLength={MAX_LENGTH_TEXT}
       >
       </textarea>
     );
@@ -129,7 +133,7 @@ class ReviewScreen extends PureComponent {
 
     evt.preventDefault();
 
-    if (rating && comment) {
+    if (rating && comment && comment.length >= MIN_LENGTH_TEXT && comment.length <= MAX_LENGTH_TEXT) {
       addReview(match.params.id, rating, comment).then(() => {
         if (history.length > 1) {
           history.goBack();

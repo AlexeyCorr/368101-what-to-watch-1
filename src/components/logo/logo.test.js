@@ -7,9 +7,9 @@ import Logo from './logo.jsx';
 it(`renders correctly`, () => {
   const tree = renderer
     .create(
-      <StaticRouter>
-        <Logo modifier={`light`}/>
-      </StaticRouter>
+        <StaticRouter>
+          <Logo modifier={`light`}/>
+        </StaticRouter>
     ).toJSON();
   expect(tree).toMatchSnapshot();
 });

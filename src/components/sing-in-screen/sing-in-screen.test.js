@@ -12,9 +12,9 @@ it(`renders correctly`, () => {
   const form = {email: ``, password: ``};
   const tree = renderer
     .create(
-      <StaticRouter>
-        <SingInScreen user={user} logIn={logIn} history={history} form={form} setValue={setValue}/>
-      </StaticRouter>
+        <StaticRouter>
+          <SingInScreen user={user} logIn={logIn} history={history} form={form} setValue={setValue}/>
+        </StaticRouter>
     ).toJSON();
 
   expect(tree).toMatchSnapshot();

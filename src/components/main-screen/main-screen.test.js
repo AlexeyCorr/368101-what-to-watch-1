@@ -15,18 +15,18 @@ it(`renders correctly`, () => {
 
   const tree = renderer
     .create(
-      <StaticRouter>
-        <MainScreen
-          films={films}
-          promoFilm={films[1]}
-          genres={genres}
-          user={user}
-          clickFilterHandler={clickFilterHandler}
-          clickMovieHandler={clickMovieHandler}
-          addFavotite={addFavotite}
-          removeFavotite={removeFavotite}
-        />
-      </StaticRouter>
+        <StaticRouter>
+          <MainScreen
+            films={films}
+            promoFilm={films[1]}
+            genres={genres}
+            user={user}
+            clickFilterHandler={clickFilterHandler}
+            clickMovieHandler={clickMovieHandler}
+            addFavotite={addFavotite}
+            removeFavotite={removeFavotite}
+          />
+        </StaticRouter>
     ).toJSON();
   expect(tree).toMatchSnapshot();
 });

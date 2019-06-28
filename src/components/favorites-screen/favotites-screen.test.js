@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {StaticRouter} from 'react-router'
+import {StaticRouter} from 'react-router';
 
 import {user} from './../../mocks/user.js';
 import {films} from './../../mocks/films.js';
@@ -11,14 +11,14 @@ it(`renders correctly`, () => {
 
   const tree = renderer
   .create(
-    <StaticRouter>
-      <FavoritesScreen
-        user={user}
-        films={films}
-        loadFavorites={loadFavorites}
-        favorites={films}
-      />
-    </StaticRouter>
+      <StaticRouter>
+        <FavoritesScreen
+          user={user}
+          films={films}
+          loadFavorites={loadFavorites}
+          favorites={films}
+        />
+      </StaticRouter>
   ).toJSON();
   expect(tree).toMatchSnapshot();
 });

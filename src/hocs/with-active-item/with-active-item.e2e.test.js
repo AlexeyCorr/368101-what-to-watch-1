@@ -11,6 +11,6 @@ const MockComponentWrapped = withActiveItem(MockComponent);
 it(`Should change activeItem when call clickHandler`, () => {
   const wrapper = shallow(<MockComponentWrapped />);
 
-  wrapper.props().clickHandler(`click-item`)
+  wrapper.props().clickHandler(`click-item`);
   expect(wrapper.state().activeItem).toEqual(`click-item`);
 });

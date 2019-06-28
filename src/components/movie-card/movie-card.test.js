@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {StaticRouter} from 'react-router'
+import {StaticRouter} from 'react-router';
 
 import {films} from './../../mocks/films.js';
 import MovieCard from './movie-card.jsx';

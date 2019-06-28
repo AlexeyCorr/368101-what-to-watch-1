@@ -7,9 +7,9 @@ import Footer from './footer.jsx';
 it(`renders correctly`, () => {
   const tree = renderer
     .create(
-      <StaticRouter>
-        <Footer/>
-      </StaticRouter>
+        <StaticRouter>
+          <Footer/>
+        </StaticRouter>
     ).toJSON();
   expect(tree).toMatchSnapshot();
 });
